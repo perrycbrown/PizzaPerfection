@@ -24,6 +24,8 @@ public class PizzaOrder {
 		
 		// Probably convert pizzasizes to a HashMap eventually for 
 		// easier lookups?
+		// HashMap<String, Double> pizzaSizes = pizzaService.getPizzaSizes();
+		// ArrayList<PizzaElementImpl> pizzasElements = pizzaService.getPizzaElemets();
 		HashMap<String, Double> pizzasizeshash = new HashMap<String, Double>();
 		for (Object size : pizzasizes) {
 		   pizzasizeshash.put(((PizzaSizeImpl) size).getLabel(), ((PizzaSizeImpl) size).getMultiplier());
