@@ -6,6 +6,7 @@ import java.util.HashMap;
 import com.jwad.pizzaperfection.domainmodel.PizzaElementImpl;
 import com.jwad.pizzaperfection.domainmodel.PizzaImpl;
 import com.jwad.pizzaperfection.domainmodel.PizzaSizeImpl;
+import com.jwad.pizzaperfection.service.PizzaServiceImpl;
 
 public class PizzaOrder {
 
@@ -15,45 +16,27 @@ public class PizzaOrder {
 	public static void main(String[] args) {
 		
 		PizzaImpl pizza;
+		PizzaServiceImpl pizzaService;
+		ArrayList<PizzaSizeImpl> pizzasizes;
+		HashMap<String, Double> pizzasizeshash;
+		ArrayList<PizzaElementImpl> pizzaelements;
 		
-		ArrayList<PizzaSizeImpl> pizzasizes = new ArrayList<PizzaSizeImpl>();	
-		pizzasizes.add(new PizzaSizeImpl("small", 0));
-		pizzasizes.add(new PizzaSizeImpl("medium", 1.5));
-		pizzasizes.add(new PizzaSizeImpl("large", 2.0));
-		pizzasizes.add(new PizzaSizeImpl("extra large", 2.5));
+		pizzaService = new PizzaServiceImpl();
+		pizzasizes = pizzaService.getPizzaSizes();
+		System.out.println(pizzasizes);
 		
 		// Probably convert pizzasizes to a HashMap eventually for 
-		// easier lookups?
-		// HashMap<String, Double> pizzaSizes = pizzaService.getPizzaSizes();
-		// ArrayList<PizzaElementImpl> pizzasElements = pizzaService.getPizzaElemets();
-		HashMap<String, Double> pizzasizeshash = new HashMap<String, Double>();
-		for (Object size : pizzasizes) {
-		   pizzasizeshash.put(((PizzaSizeImpl) size).getLabel(), ((PizzaSizeImpl) size).getMultiplier());
-		}
-		
+		// easier lookups? 
+		pizzasizeshash = pizzaService.convertPizzaSizes(pizzasizes);
 		System.out.println(pizzasizeshash);
 		
-		ArrayList<PizzaElementImpl> pizzaelements = new ArrayList<PizzaElementImpl>();
-		pizzaelements.add(new PizzaElementImpl("crust", "regular crust", 1.00));
-		pizzaelements.add(new PizzaElementImpl("crust", "thick crust", 2.00));
-		pizzaelements.add(new PizzaElementImpl("sauce", "regular sauce", 1.00));
-		pizzaelements.add(new PizzaElementImpl("sauce", "hot sauce", 2.00));
-		pizzaelements.add(new PizzaElementImpl("cheese", "regular cheese", 1.00));
-		pizzaelements.add(new PizzaElementImpl("cheese", "extra cheese", 2.00));
-		pizzaelements.add(new PizzaElementImpl("topping", "pepperoni", 1.00));
-		pizzaelements.add(new PizzaElementImpl("topping", "mushroom", 1.00));
-		
+		// Load the element of our pizza, like different types of 
+		// crust, sauce, cheese, etc.
+		pizzaelements = pizzaService.getPizzaElements();
 		System.out.println(pizzaelements);
 		
-		pizza = new PizzaImpl(	pizzaelements.get(1).getLabel(), 
-								pizzaelements.get(1).getPrice(), 
-								pizzaelements.get(3).getLabel(), 
-								pizzaelements.get(3).getPrice(), 
-								pizzaelements.get(5).getLabel(), 
-								pizzaelements.get(5).getPrice(),
-								pizzaelements.get(7).getLabel(), 
-								pizzaelements.get(7).getPrice(),
-								pizzasizes.get(1).getMultiplier());
+		// Create a pizza, to see a test PizzaImpl object:
+		pizza = pizzaService.pizzaTest(pizzaelements, pizzasizes);
 		
 		System.out.println(pizza);
 		System.out.println("Total cost is: " + pizza.calcPrice());
