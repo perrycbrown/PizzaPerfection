@@ -11,6 +11,7 @@ public class PizzaImpl implements Pizza {
 	private String toppingType;
 	private double toppingPrice;
 	private double pizzaSize;
+	private double totalPrice;
 	
 	public PizzaImpl(String crustType, 
 					double crustPrice, 
@@ -31,6 +32,8 @@ public class PizzaImpl implements Pizza {
 		this.toppingType = toppingType;
 		this.toppingPrice = toppingPrice;
 		this.pizzaSize = pizzaSize;
+		this.totalPrice = calcPrice();
+		
 	}
 
 	@Override
@@ -42,6 +45,14 @@ public class PizzaImpl implements Pizza {
 	public String getCrustType() {
 		return this.crustType;
 	}
+	
+	public void setCrustPrice(Double price) {
+		this.crustPrice = price;
+	}
+
+	public Double getCrustPrice() {
+		return this.crustPrice;
+	}
 
 	@Override
 	public void setSauceType(String type) {
@@ -51,6 +62,14 @@ public class PizzaImpl implements Pizza {
 	@Override
 	public String getSauceType() {
 		return this.sauceType;
+	}
+	
+	public void setSaucePrice(Double price) {
+		this.saucePrice = price;
+	}
+
+	public double getSaucePrice() {
+		return this.saucePrice;
 	}
 
 	@Override
@@ -82,6 +101,15 @@ public class PizzaImpl implements Pizza {
 	public double getSize() {
 		return this.pizzaSize;
 	}
+	
+	public void setTotalPrice(double price) {
+		this.totalPrice = price;
+	}
+
+	public double getTotalPrice() {
+		return this.totalPrice;
+	}
+	
 	
 	public double calcPrice() {
 		return  (( this.cheesePrice + this.crustPrice + this.saucePrice + this.toppingPrice ) * this.pizzaSize);

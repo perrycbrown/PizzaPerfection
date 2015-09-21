@@ -3,6 +3,8 @@ package com.jwad.pizzaperfection.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.jwad.pizzaperfection.domainmodel.PizzaElementImpl;
 import com.jwad.pizzaperfection.domainmodel.PizzaImpl;
 import com.jwad.pizzaperfection.domainmodel.PizzaSizeImpl;
@@ -21,7 +23,7 @@ public class PizzaServiceImpl implements PizzaService {
 	@Override
 	public ArrayList<PizzaSizeImpl> getPizzaSizes() {
 			
-		pizzasizes.add(new PizzaSizeImpl("small", 0));
+		pizzasizes.add(new PizzaSizeImpl("small", 1.0));
 		pizzasizes.add(new PizzaSizeImpl("medium", 1.5));
 		pizzasizes.add(new PizzaSizeImpl("large", 2.0));
 		pizzasizes.add(new PizzaSizeImpl("extra large", 2.5));		
@@ -64,6 +66,22 @@ public class PizzaServiceImpl implements PizzaService {
 				pizzaelements.get(7).getLabel(), 
 				pizzaelements.get(7).getPrice(),
 				pizzasizes.get(1).getMultiplier());
+		
+		return pizza;
+		
+	}
+	
+	public PizzaImpl createPizzaFromRequest (HttpServletRequest request) {
+		
+		pizza = new PizzaImpl(request.getParameter("crust"),
+				Double.parseDouble(request.getParameter("crust_price")), 
+				request.getParameter("sauce"), 
+				Double.parseDouble(request.getParameter("sauce_price")), 
+				request.getParameter("cheese"),
+				Double.parseDouble(request.getParameter("cheese_price")),
+				request.getParameter("topping"), 
+				Double.parseDouble(request.getParameter("topping_price")),
+				Double.parseDouble(request.getParameter("size_price")) );
 		
 		return pizza;
 		

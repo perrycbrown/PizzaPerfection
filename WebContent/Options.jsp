@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.HashMap" %>
+<%@ page import="java.util.Map.Entry" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -31,52 +35,60 @@ td {
 <body>
 
 <h2>Choose the options to build your pizza:</h2>
-<form action="/options/">
+<form action="../review/" method="post">
 
 <table class="center">
 
+<c:set var="prevtype" value=""  />
+<c:forEach items="${pizzaelements}" var="element" varStatus = "status">
+
+<c:set var="type" scope="session" value="${element.getType()}"/>
+
+<c:if test="${prevtype == ''}">
 <tr>
-<td>Crust type</td>
+<td>${element.getType()}</td>
 <td>
-<select name="crust" size="1" id="crust" onChange="change_price(this);">
-<option value="regular crust" data-price="1.00">Regular crust</option>
-<option value="thick crust" data-price="2.00">Thick crust</option>
+<select name="${element.getType()}" size="1" id="${element.getType()}" onChange="change_price(this);">
+</c:if>
+
+<c:if test="${type == prevtype || prevtype == ''}">
+<option value="${element.getLabel()}" data-price="${element.getPrice()}">${element.getLabel()}</option>
+</c:if>
+
+<c:if test="${type != prevtype && prevtype != ''}">
 </select>
-<input type="hidden" name="crust_price" value="1.00" id="crust_price">
+<input type="hidden" name="${prevtype}_price" value="1.00" id="${prevtype}_price">
 </td>
 </tr>
-
 <tr>
-<td>Sauce type</td>
+<td>${element.getType()}</td>
 <td>
-<select name="sauce" size="1" id="sauce" onChange="change_price(this);">
-<option value="regular sauce" data-price="1.00">Regular sauce</option>
-<option value="extra sauce" data-price="2.00">Extra sauce</option>
+<select name="${element.getType()}" size="1" id="${element.getType()}" onChange="change_price(this);">
+<option value="${element.getLabel()}" data-price="${element.getPrice()}">${element.getLabel()}</option>
+</c:if>
+
+<c:set var="prevtype" value="${type}"  />
+
+<c:if test="${status.isLast()}" >
 </select>
-<input type="hidden" name="sauce_price" value="1.00" id="sauce_price">
+<input type="hidden" name="${type}_price" value="1.00" id="${type}_price">
 </td>
 </tr>
+</c:if>
+</c:forEach>
+
 
 <tr>
-<td>Cheese type</td>
+<td>Size:</td>
 <td>
-<select name="cheese" size="1" id="cheese" onChange="change_price(this);">
-<option value="regular cheese" data-price="1.00">Regular cheese</option>
-<option value="extra cheese" data-price="2.00">Extra cheese</option>
-</select>
-<input type="hidden" name="cheese_price" value="1.00" id="cheese_price">
-</td>
-</tr>
+<select name="size" size="1" id="size" onChange="change_price(this);">
 
-<tr>
-<td>Topping type</td>
-<td>
-<select name="topping" size="1" id="topping" onChange="change_price(this);">
-<option value="pepperoni" data-price="1.00">Pepperoni</option>
-<option value="mushrooms" data-price="1.00">Mushrooms</option>
-<option value="sausage" data-price="2.00">Sausage</option>
+<c:forEach items="${pizzasizeshash}" var="size">
+<option value="${size.getLabel()}" data-price="${size.getMultiplier()}">${size.getLabel()}</option>
+</c:forEach>
+
 </select>
-<input type="hidden" name="topping_price" value="1.00" id="topping_price">
+<input type="hidden" name="size_price" value="1.00" id="size_price">
 </td>
 </tr>
 
