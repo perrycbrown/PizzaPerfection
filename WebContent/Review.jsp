@@ -5,35 +5,19 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Pizza Options</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <script language="javascript" type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script>
-function change_price(element) {
-	  var price = $(element).find(':selected').data("price");
-	  //alert(price + " and name is: " + $(element).attr("name"));
-	  $("#"+$(element).attr("name")+"_price").val(price);
-}
-</script>
-<style>
-h2 {
-  text-align: center;
-}
-table.center {
-    margin-left:auto; 
-    margin-right:auto;
-}
-
-td {
-	padding: 5px;
-}
-</style>
-
 </head>
 <body>
 
-<h2>Here are the options you chose for your pizza:</h2>
+<div class="container">
+	<div class="row center-block">
+  		<div class="col-md-12">
+
+<h2 class="text-center">Here are the options you chose for your pizza:</h2>
 <form action="../payment/">
 
-<table class="center">
+<table class="table table-striped table-bordered table-hover">
 
 <tr>
 <td>Crust type</td>
@@ -51,7 +35,7 @@ td {
 <%= request.getParameter("sauce") %>
 </td>
 <td>
-&#36;<%= request.getParameter("sauce_price") %>
+&#36;<%= String.format("%-4s", request.getParameter("sauce_price")).replace(' ', '0') %>
 </td>
 </tr>
 
@@ -61,7 +45,7 @@ td {
 <%= request.getParameter("cheese") %>
 </td>
 <td>
-&#36;<%= request.getParameter("cheese_price") %>
+&#36;<%= String.format("%-4s", request.getParameter("cheese_price")).replace(' ', '0') %>
 </td>
 </tr>
 
@@ -71,7 +55,7 @@ td {
 <%= request.getParameter("topping") %>
 </td>
 <td>
-&#36;<%= request.getParameter("topping_price") %>
+&#36;<%= String.format("%-4s", request.getParameter("topping_price")).replace(' ', '0') %>
 </td>
 </tr>
 
@@ -81,7 +65,7 @@ td {
 <%= request.getParameter("size") %>
 </td>
 <td>
-&nbsp;
+X <%= request.getParameter("size_price") %>
 </td>
 </tr>
 
@@ -99,14 +83,20 @@ td {
 <td>Finish and pay:</td>
 <td>
 <form action="payment" method="post">
-<input type="submit" value="Pay It!">
+<input type="submit" value="Pay It!" class="btn btn-primary">
 </form>
+</td>
+
+<td>
+&nbsp;
 </td>
 </tr>
 
 </table>
 </form>
 
-
+</div>
+</div>
+</div>
 </body>
 </html>
