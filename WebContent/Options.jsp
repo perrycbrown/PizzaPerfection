@@ -6,17 +6,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Pizza Options</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<script language="javascript" type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script>
-function change_price(element) {
-	  var price = $(element).find(':selected').data("price");
-	  //alert(price + " and name is: " + $(element).attr("name"));
-	  $("#"+$(element).attr("name")+"_price").val(price);
-}
-</script>
+<c:import url="/includes/head.jsp" />
 </head>
 <body>
+
+<c:import url="/includes/top.jsp" />
 
 <div class="container">
 	<div class="row center-block">

@@ -24,7 +24,6 @@ public class ReviewServlet extends HttpServlet {
     	// Gather incoming pizza order info into a pizza object, and calculate
     	// price also:
     	PizzaImpl pizza = pizzaService.createPizzaFromRequest(request);
-    	System.out.println("Here is pizza: " + pizza);
     	Double total = pizza.getTotalPrice();
     	request.setAttribute("total",String.format("%1$,.2f", total));
      	 
