@@ -3,10 +3,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 import com.jwad.pizzaperfection.domainmodel.PizzaImpl;
-import com.jwad.pizzaperfection.service.PizzaServiceImpl;
-
 import java.io.*;
-import java.util.HashMap;
  
  
 @SuppressWarnings("serial")
