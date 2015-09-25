@@ -38,8 +38,8 @@ public class OptionsServlet extends HttpServlet {
 		session.setAttribute("pizzasizeshash", pizzasizes);
 		
 		// Load the element of our pizza, like different types of 
-		// crust, sauce, cheese, etc.
-		pizzaelements = pizzaService.getPizzaElements();
+		// crust, sauce, cheese, etc. No complete pizzas here, though.
+		pizzaelements = pizzaService.getPizzaElements(2);
 		session.setAttribute("pizzaelements", pizzaelements);
          
     	request.getRequestDispatcher("/Options.jsp").forward(request, response);

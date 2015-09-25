@@ -32,7 +32,7 @@ public class PizzaOrder {
 		
 		// Load the element of our pizza, like different types of 
 		// crust, sauce, cheese, etc.
-		pizzaelements = pizzaService.getPizzaElements();
+		pizzaelements = pizzaService.getPizzaElements(2);
 		System.out.println(pizzaelements);
 		
 		// Create a pizza, to see a test PizzaImpl object:

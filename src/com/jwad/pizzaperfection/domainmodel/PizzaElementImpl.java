@@ -13,6 +13,10 @@ public class PizzaElementImpl implements PizzaElement {
 		this.price = price;
 	}
 
+	public PizzaElementImpl() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getType() {
 		return this.type;
 	}

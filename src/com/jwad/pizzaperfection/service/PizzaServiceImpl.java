@@ -5,6 +5,8 @@ import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.jwad.pizzaperfection.dao.PizzaElementDaoJdbcImpl;
+import com.jwad.pizzaperfection.dao.PizzaSizeDaoJdbcImpl;
 import com.jwad.pizzaperfection.domainmodel.PizzaElementImpl;
 import com.jwad.pizzaperfection.domainmodel.PizzaImpl;
 import com.jwad.pizzaperfection.domainmodel.PizzaSizeImpl;
@@ -23,26 +25,30 @@ public class PizzaServiceImpl implements PizzaService {
 	@Override
 	public ArrayList<PizzaSizeImpl> getPizzaSizes() {
 			
-		pizzasizes.add(new PizzaSizeImpl("small", 1.0));
-		pizzasizes.add(new PizzaSizeImpl("medium", 1.5));
-		pizzasizes.add(new PizzaSizeImpl("large", 2.0));
-		pizzasizes.add(new PizzaSizeImpl("extra large", 2.5));		
-		return pizzasizes;
+		//pizzasizes.add(new PizzaSizeImpl("small", 1.0));
+		//pizzasizes.add(new PizzaSizeImpl("medium", 1.5));
+		//pizzasizes.add(new PizzaSizeImpl("large", 2.0));
+		//pizzasizes.add(new PizzaSizeImpl("extra large", 2.5));		
+		//return pizzasizes;
+		PizzaSizeDaoJdbcImpl PizzaSize = new PizzaSizeDaoJdbcImpl();
+		return PizzaSize.list();
 		
 	}
 
 	@Override
-	public ArrayList<PizzaElementImpl> getPizzaElements() {
+	public ArrayList<PizzaElementImpl> getPizzaElements(int complete) {
 
-		pizzaelements.add(new PizzaElementImpl("crust", "regular crust", 1.00));
-		pizzaelements.add(new PizzaElementImpl("crust", "thick crust", 2.00));
-		pizzaelements.add(new PizzaElementImpl("sauce", "regular sauce", 1.00));
-		pizzaelements.add(new PizzaElementImpl("sauce", "hot sauce", 2.00));
-		pizzaelements.add(new PizzaElementImpl("cheese", "regular cheese", 1.00));
-		pizzaelements.add(new PizzaElementImpl("cheese", "extra cheese", 2.00));
-		pizzaelements.add(new PizzaElementImpl("topping", "pepperoni", 1.00));
-		pizzaelements.add(new PizzaElementImpl("topping", "mushroom", 1.00));
-		return pizzaelements;
+		//pizzaelements.add(new PizzaElementImpl("crust", "regular crust", 1.00));
+		//pizzaelements.add(new PizzaElementImpl("crust", "thick crust", 2.00));
+		//pizzaelements.add(new PizzaElementImpl("sauce", "regular sauce", 1.00));
+		//pizzaelements.add(new PizzaElementImpl("sauce", "hot sauce", 2.00));
+		//pizzaelements.add(new PizzaElementImpl("cheese", "regular cheese", 1.00));
+		//pizzaelements.add(new PizzaElementImpl("cheese", "extra cheese", 2.00));
+		//pizzaelements.add(new PizzaElementImpl("topping", "pepperoni", 1.00));
+		//pizzaelements.add(new PizzaElementImpl("topping", "mushroom", 1.00));
+		
+		PizzaElementDaoJdbcImpl PizzaElements = new PizzaElementDaoJdbcImpl();
+		return PizzaElements.list(complete);
 		
 	}
 	
