@@ -19,7 +19,7 @@ body {
 }
 
 .header {
-	background: rgba(0, 0, 0, 0) url("../images/pizza-pattern-seamless.png") repeat scroll left;
+	background: rgba(0, 0, 0, 0) url("../images/solid_background.png") repeat scroll left;
 	#background: #e18728 none repeat scroll 0 0;
 	height: 120px;
 	border-bottom: 5px #014133 solid;
