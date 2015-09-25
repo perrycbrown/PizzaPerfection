@@ -16,7 +16,7 @@
 	<div class="row center-block">
   		<div class="col-md-12">
 
-<h2 class="text-center">Here are the options you chose for your pizza:</h2>
+<h2 class="text-center">Here is the pizza you chose:</h2>
 <form action="../payment/">
 
 <table class="table table-striped table-bordered table-hover">
@@ -85,7 +85,7 @@ X <%= request.getParameter("size_price") %>
 <td>Finish and pay:</td>
 <td>
 <form action="payment" method="post">
-<input type="submit" value="Pay It!" class="btn btn-primary">
+<input type="submit" value="Pay It!" class="btn btn-danger">
 </form>
 </td>
 

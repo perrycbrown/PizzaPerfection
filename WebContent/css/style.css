@@ -19,19 +19,20 @@ body {
 }
 
 .header {
-	#background: rgba(0, 0, 0, 0) url("../images/pizzaheader.png") no-repeat scroll center -100px;
-	background: #e18728 none repeat scroll 0 0;
+	background: rgba(0, 0, 0, 0) url("../images/pizza-pattern-seamless.png") repeat scroll left;
+	#background: #e18728 none repeat scroll 0 0;
 	height: 120px;
+	border-bottom: 5px #014133 solid;
 }
 
 .bannerimage {
-	background: rgba(0, 0, 0, 0) url("../images/womanpizza.jpg") no-repeat scroll center top;
+	background: rgba(0, 0, 0, 0) url("../images/womanpizza.png") no-repeat scroll center top;
 	width: 190px;
 	height: 126px;
 	margin-top: -60px;
 	margin-bottom: 20px;
 	padding-bottom: 20px;
-	margin-left: 100px;
+	margin-left: 10%;
 	position: absolute;
 	clear: both;
 	
@@ -42,4 +43,5 @@ body {
 	width: 600px;
 	height: 100px;
 	margin: auto;
+	margin-top: 5px;
 }

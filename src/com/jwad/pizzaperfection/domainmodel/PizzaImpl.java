@@ -36,6 +36,10 @@ public class PizzaImpl implements Pizza {
 		
 	}
 
+	public PizzaImpl() {
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public void setCrustType(String type) {
 		this.crustType = type;

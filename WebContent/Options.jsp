@@ -77,7 +77,7 @@
 <tr>
 <td class="text-right">Review your pizza:</td>
 <td class="left">
-<input type="submit" value="Review It!" class="btn btn-primary">
+<input type="submit" value="Review It!" class="btn btn-danger">
 </td>
 </tr>
 

@@ -9,6 +9,6 @@ import com.jwad.pizzaperfection.domainmodel.PizzaSizeImpl;
 public interface PizzaService {
 	
 	public ArrayList<PizzaSizeImpl> getPizzaSizes();
-	public ArrayList<PizzaElementImpl> getPizzaElements();
+	public ArrayList<PizzaElementImpl> getPizzaElements(int complete);
 
 }
