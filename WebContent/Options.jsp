@@ -17,14 +17,16 @@
   		<div class="col-md-12 ">
 
 <h2 class="text-center">Choose the options to build your pizza:</h2>
-<form action="../review/" method="post">
+<form action="../review/" method="post" id="theform">
 
 <table class="table table-striped table-bordered table-hover">
 
 <c:set var="prevtype" value=""  />
+<c:set var="pizza" value="${pizza}" scope="application" />
 <c:forEach items="${pizzaelements}" var="element" varStatus = "status">
 
 	<c:set var="type" scope="session" value="${element.getType()}"/>
+	<c:set var="label" value="${element.getLabel()}" />
 
 	<c:if test="${prevtype == ''}">
 		<tr>
@@ -34,7 +36,14 @@
 	</c:if>
 
 	<c:if test="${type == prevtype || prevtype == ''}">
-		<option value="${element.getLabel()}" data-price="${element.getPrice()}">${element.getLabel()}</option>
+		<c:choose>
+			<c:when test="${label == pizza.getCrustType() || label == pizza.getSauceType() || label == pizza.getCheeseType() || label == pizza.getToppingType()}">
+				<option value="${element.getLabel()}" data-price="${element.getPrice()}" selected>${element.getLabel()}</option>
+			</c:when>
+			<c:otherwise>
+				<option value="${element.getLabel()}" data-price="${element.getPrice()}">${element.getLabel()}</option>
+			</c:otherwise>
+		</c:choose>
 	</c:if>
 
 	<c:if test="${type != prevtype && prevtype != ''}">
@@ -46,8 +55,14 @@
 		<td class="text-right">Type of ${element.getType()}:</td>
 		<td>
 		<select name="${element.getType()}" class="form-control" size="1" id="${element.getType()}" onChange="change_price(this);">
-		<option value="${element.getLabel()}" data-price="${element.getPrice()}">${element.getLabel()}</option>
-	</c:if>
+		<c:choose>
+			<c:when test="${label == pizza.getCrustType() || label == pizza.getSauceType() || label == pizza.getCheeseType() || label == pizza.getToppingType()}">
+				<option value="${element.getLabel()}" data-price="${element.getPrice()}" selected>${element.getLabel()}</option>
+			</c:when>
+			<c:otherwise>
+				<option value="${element.getLabel()}" data-price="${element.getPrice()}">${element.getLabel()}</option>
+			</c:otherwise>
+		</c:choose>	</c:if>
 
 	<c:set var="prevtype" value="${type}"  />
 
@@ -65,8 +80,16 @@
 <td>
 <select name="size" class="form-control" size="1" id="size" onChange="change_price(this);">
 
+<c:set var="pizzasize" scope="session" value="${pizza.getSize()}"/>
 <c:forEach items="${pizzasizeshash}" var="size">
-	<option value="${size.getLabel()}" data-price="${size.getMultiplier()}">${size.getLabel()}</option>
+	<c:choose>
+		<c:when test="${pizzasize == size.getMultiplier()}">
+			<option value="${size.getLabel()}" data-price="${size.getMultiplier()}" selected>${size.getLabel()}</option>
+		</c:when>
+		<c:otherwise>
+			<option value="${size.getLabel()}" data-price="${size.getMultiplier()}">${size.getLabel()}</option>
+		</c:otherwise>
+	</c:choose>
 </c:forEach>
 
 </select>
@@ -87,5 +110,14 @@
 </div>
 </div>
 </div>
+<script>
+$( document ).ready(function() {
+	options = ['crust','sauce','cheese','topping','size'];
+	for (i=0; i<options.length; i++) {
+    	var price = $("#theform #"+options[i]+" option:selected").attr("data-price");
+    	$("#theform #"+options[i]+"_price").val(price);
+	}
+});
+</script>
 </body>
 </html>
