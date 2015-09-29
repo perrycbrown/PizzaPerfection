@@ -25,6 +25,7 @@ public class OptionsServlet extends HttpServlet {
 		PizzaServiceImpl pizzaService;
 		ArrayList<PizzaSizeImpl> pizzasizes;
 		ArrayList<PizzaElementImpl> pizzaelements;
+		ArrayList<PizzaElementImpl> pizzacomplete;
 		HttpSession session = request.getSession();
 		
 		pizzaService = new PizzaServiceImpl();
@@ -36,7 +37,11 @@ public class OptionsServlet extends HttpServlet {
 		// crust, sauce, cheese, etc. No complete pizzas here, though.
 		pizzaelements = pizzaService.getPizzaElements(2);
 		session.setAttribute("pizzaelements", pizzaelements);
-     	 
+		
+		// Load the complete pizzas here.
+		pizzacomplete = pizzaService.getPizzaElements(3);
+		session.setAttribute("pizzacomplete", pizzacomplete);
+		
     	@SuppressWarnings("unused")
 		PizzaImpl pizza = (PizzaImpl) session.getAttribute("pizza");
          

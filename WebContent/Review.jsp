@@ -72,9 +72,9 @@ X <%= request.getParameter("size_price") %>
 </tr>
 
 <tr>
-<td>Order total</td>
-<td>
-=
+<td>&nbsp;</td>
+<td align="right">
+Order total =
 </td>
 <td>
 &#36;<%= request.getAttribute("total") %>
@@ -86,10 +86,10 @@ X <%= request.getParameter("size_price") %>
 
 Go back and&nbsp;
 <a href="../options/"><button type="button" class="btn btn-primary">Change</button></a>
-&nbsp;your order,
+&nbsp;your order, or &rarr;
 </td>
 <td align="right">
-or finish and pay:
+Finish and pay:
 </td>
 <td>
 <a href="../payment/"><button type="button" class="btn btn-danger">Pay It!</button></a>

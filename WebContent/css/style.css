@@ -1,6 +1,6 @@
 @CHARSET "UTF-8";
 
-@media only screen and (max-width : 1100px) {
+@media only screen and (max-width : 1000px) {
 	.bannerimage {
 		visibility: hidden;
 		display: none;
@@ -21,7 +21,7 @@ body {
 .header {
 	background: rgba(0, 0, 0, 0) url("../images/solid_background.png") repeat scroll left;
 	#background: #e18728 none repeat scroll 0 0;
-	height: 120px;
+	height: 140px;
 	border-bottom: 5px #014133 solid;
 }
 
@@ -29,7 +29,7 @@ body {
 	background: rgba(0, 0, 0, 0) url("../images/womanpizza.png") no-repeat scroll center top;
 	width: 190px;
 	height: 126px;
-	margin-top: -60px;
+	margin-top: -131px;
 	margin-bottom: 20px;
 	padding-bottom: 20px;
 	margin-left: 10%;
