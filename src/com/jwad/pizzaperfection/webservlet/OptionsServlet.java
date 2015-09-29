@@ -3,6 +3,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 import com.jwad.pizzaperfection.domainmodel.PizzaElementImpl;
+import com.jwad.pizzaperfection.domainmodel.PizzaImpl;
 import com.jwad.pizzaperfection.domainmodel.PizzaSizeImpl;
 import com.jwad.pizzaperfection.service.PizzaServiceImpl;
 
@@ -35,6 +36,9 @@ public class OptionsServlet extends HttpServlet {
 		// crust, sauce, cheese, etc. No complete pizzas here, though.
 		pizzaelements = pizzaService.getPizzaElements(2);
 		session.setAttribute("pizzaelements", pizzaelements);
+     	 
+    	@SuppressWarnings("unused")
+		PizzaImpl pizza = (PizzaImpl) session.getAttribute("pizza");
          
     	request.getRequestDispatcher("/Options.jsp").forward(request, response);
     	

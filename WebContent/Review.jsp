@@ -82,15 +82,17 @@ X <%= request.getParameter("size_price") %>
 </tr>
 
 <tr>
-<td>Finish and pay:</td>
 <td>
-<form action="payment" method="post">
-<input type="submit" value="Pay It!" class="btn btn-danger">
-</form>
-</td>
 
+Go back and&nbsp;
+<a href="../options/"><button type="button" class="btn btn-primary">Change</button></a>
+&nbsp;your order,
+</td>
+<td align="right">
+or finish and pay:
+</td>
 <td>
-&nbsp;
+<a href="../payment/"><button type="button" class="btn btn-danger">Pay It!</button></a>
 </td>
 </tr>
 
