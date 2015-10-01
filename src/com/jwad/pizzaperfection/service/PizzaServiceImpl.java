@@ -61,7 +61,7 @@ public class PizzaServiceImpl implements PizzaService {
 
 	}
 	
-	public PizzaImpl pizzaTest (ArrayList<PizzaElementImpl> pizzaelements, ArrayList<PizzaSizeImpl> pizzasizes) {
+	/*public PizzaImpl pizzaTest (ArrayList<PizzaElementImpl> pizzaelements, ArrayList<PizzaSizeImpl> pizzasizes) {
 		
 		pizza = new PizzaImpl(	pizzaelements.get(1).getLabel(), 
 				pizzaelements.get(1).getPrice(), 
@@ -75,19 +75,25 @@ public class PizzaServiceImpl implements PizzaService {
 		
 		return pizza;
 		
-	}
+	}*/
 	
 	public PizzaImpl createPizzaFromRequest (HttpServletRequest request) {
 		
-		pizza = new PizzaImpl(request.getParameter("crust"),
-				Double.parseDouble(request.getParameter("crust_price")), 
-				request.getParameter("sauce"), 
-				Double.parseDouble(request.getParameter("sauce_price")), 
-				request.getParameter("cheese"),
-				Double.parseDouble(request.getParameter("cheese_price")),
-				request.getParameter("topping"), 
-				Double.parseDouble(request.getParameter("topping_price")),
-				Double.parseDouble(request.getParameter("size_price")) );
+		if (request.getParameter("complete") != null && request.getParameter("complete_price") != null) {
+			pizza = new PizzaImpl(request.getParameter("complete"),
+					Double.parseDouble(request.getParameter("complete_price")) );
+		}
+		else {
+			pizza = new PizzaImpl(request.getParameter("crust"),
+					Double.parseDouble(request.getParameter("crust_price")), 
+					request.getParameter("sauce"), 
+					Double.parseDouble(request.getParameter("sauce_price")), 
+					request.getParameter("cheese"),
+					Double.parseDouble(request.getParameter("cheese_price")),
+					request.getParameter("topping"), 
+					Double.parseDouble(request.getParameter("topping_price")),
+					Double.parseDouble(request.getParameter("size_price")) );
+		}
 		
 		return pizza;
 		

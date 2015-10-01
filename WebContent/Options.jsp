@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.jwad.pizzaperfection.domainmodel.PizzaImpl" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -15,11 +15,27 @@
 <div class="container">
 	<div class="row center-block">
   		<div class="col-md-12 ">
+  		<br/>
+  		
+<!--  tab navigation -->
+<ul class="nav nav-tabs" role="tablist">
+<li role="presentation" class="<%= request.getAttribute("pizzaClass") %>"><a href="#buildapizza" aria-controls="home" role="tab" data-toggle="tab">Build-A-Pizza</a></li>
+<li role="presentation" class="<%= request.getAttribute("completeClass") %>"><a href="#completepizzas" aria-controls="profile" role="tab" data-toggle="tab">Complete Pizzas</a></li>
+</ul>
+<!--  end tab navigation -->
 
-<h2 class="text-center">Choose the options to build your pizza:</h2>
+<div class="tab-content">
+
+<!--  start build-a-pizza tab -->
+<div role="tabpanel" class="tab-pane fade <%= "in " + request.getAttribute("pizzaClass") %>" id="buildapizza">
 <form action="../review/" method="post" id="theform">
 
 <table class="table table-striped table-bordered table-hover">
+<tr>
+<td colspan="3" align="center">
+<h2 class="text-center">Choose the options to build your pizza:</h2>
+</td>
+</tr>
 
 <c:set var="prevtype" value=""  />
 <c:set var="pizza" value="${pizza}" scope="application" />
@@ -106,6 +122,53 @@
 
 </table>
 </form>
+</div>
+<!--  end build-a-pizza tab -->
+
+<!--  start complete pizzas tab -->
+<div role="tabpanel" class="tab-pane fade <%= "in " + request.getAttribute("completeClass") %>" id="completepizzas">
+<form action="../review/" method="post" id="thecompleteform">
+
+<table class="table table-striped table-bordered table-hover">
+<tr>
+<td colspan="3" align="center">
+<h2 class="text-center">Choose a complete pizza:</h2>
+</td>
+</tr>
+
+<tr>
+<td class="text-right">Type of complete pizza:</td>
+<td class="left">
+<select name="complete" class="form-control" size="1" id="complete" onChange="change_price(this);">
+<c:forEach items="${pizzacomplete}" var="complete" varStatus = "status">
+
+<c:choose>
+	<c:when test="${complete.getLabel() == pizza.getCompleteType()}">
+		<option value="${complete.getLabel()}" data-price="${complete.getPrice()}" selected>${complete.getLabel()}</option>
+	</c:when>
+	<c:otherwise>
+		<option value="${complete.getLabel()}" data-price="${complete.getPrice()}">${complete.getLabel()}</option>
+	</c:otherwise>
+</c:choose>
+
+</c:forEach>
+</select>
+<input type="hidden" name="complete_price" value="1.00" id="complete_price">
+</td>
+</tr>
+<tr>
+<td class="text-right">Review your pizza:</td>
+<td class="left">
+<input type="submit" value="Review It!" class="btn btn-danger">
+</td>
+</tr>
+</table>
+</form>
+</table>
+
+</div>
+<!--  end complete pizzas tab -->
+</div>
 
 </div>
 </div>
@@ -117,6 +180,8 @@ $( document ).ready(function() {
     	var price = $("#theform #"+options[i]+" option:selected").attr("data-price");
     	$("#theform #"+options[i]+"_price").val(price);
 	}
+	var completeprice = $("#thecompleteform #complete option:selected").attr("data-price");
+	$("#thecompleteform #complete_price").val(completeprice);
 });
 </script>
 </body>

@@ -12,6 +12,8 @@ public class PizzaImpl implements Pizza {
 	private double toppingPrice;
 	private double pizzaSize;
 	private double totalPrice;
+	private String completeType = "";
+	private double completePrice;
 	
 	public PizzaImpl(String crustType, 
 					double crustPrice, 
@@ -33,6 +35,15 @@ public class PizzaImpl implements Pizza {
 		this.toppingPrice = toppingPrice;
 		this.pizzaSize = pizzaSize;
 		this.totalPrice = calcPrice();
+		
+	}
+	
+	public PizzaImpl(String completeType,
+					double completePrice) {
+		
+		this.setCompleteType(completeType);
+		this.setCompletePrice(completePrice);
+		this.totalPrice = completePrice;
 		
 	}
 
@@ -127,6 +138,22 @@ public class PizzaImpl implements Pizza {
 				+ cheesePrice + ", toppingType=" + toppingType
 				+ ", toppingPrice=" + toppingPrice + ", pizzaSize=" + pizzaSize
 				+ "]";
+	}
+
+	public String getCompleteType() {
+		return this.completeType;
+	}
+
+	public void setCompleteType(String completeType) {
+		this.completeType = completeType;
+	}
+
+	public double getCompletePrice() {
+		return this.completePrice;
+	}
+
+	public void setCompletePrice(double completePrice) {
+		this.completePrice = completePrice;
 	}
 
 }

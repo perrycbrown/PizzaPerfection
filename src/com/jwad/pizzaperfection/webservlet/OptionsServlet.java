@@ -22,9 +22,12 @@ public class OptionsServlet extends HttpServlet {
     public void doPost(HttpServletRequest request,HttpServletResponse response)
                                         throws ServletException, IOException {
     	
+    	String completeClass = "";
+    	String pizzaClass = "active";
 		PizzaServiceImpl pizzaService;
 		ArrayList<PizzaSizeImpl> pizzasizes;
 		ArrayList<PizzaElementImpl> pizzaelements;
+		ArrayList<PizzaElementImpl> pizzacomplete;
 		HttpSession session = request.getSession();
 		
 		pizzaService = new PizzaServiceImpl();
@@ -36,10 +39,21 @@ public class OptionsServlet extends HttpServlet {
 		// crust, sauce, cheese, etc. No complete pizzas here, though.
 		pizzaelements = pizzaService.getPizzaElements(2);
 		session.setAttribute("pizzaelements", pizzaelements);
-     	 
-    	@SuppressWarnings("unused")
+		
+		// Load the complete pizzas here.
+		pizzacomplete = pizzaService.getPizzaElements(3);
+		session.setAttribute("pizzacomplete", pizzacomplete);
+		
 		PizzaImpl pizza = (PizzaImpl) session.getAttribute("pizza");
-         
+		if (pizza instanceof PizzaImpl){
+			if (!pizza.getCompleteType().equals("")) {
+				completeClass = "active";
+				pizzaClass = "";
+			}
+		}
+		
+		request.setAttribute("completeClass", completeClass);
+		request.setAttribute("pizzaClass", pizzaClass);
     	request.getRequestDispatcher("/Options.jsp").forward(request, response);
     	
     }
