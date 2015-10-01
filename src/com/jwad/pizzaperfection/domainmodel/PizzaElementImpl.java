@@ -4,10 +4,10 @@ public class PizzaElementImpl implements PizzaElement {
 	
 	private String type;
 	private String label;
-	private double price;
+	private String price;
 
 
-	public PizzaElementImpl (String type, String label, double price) {
+	public PizzaElementImpl (String type, String label, String price) {
 		this.type = type;
 		this.label = label;
 		this.price = price;
@@ -33,11 +33,11 @@ public class PizzaElementImpl implements PizzaElement {
 		this.label = label;
 	}
 
-	public double getPrice() {
+	public String getPrice() {
 		return this.price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 
@@ -47,12 +47,10 @@ public class PizzaElementImpl implements PizzaElement {
 				+ ", price=" + price + "]";
 	}
 
-	@Override
-	public void setElement(String type, String label, double price) {
+	public void setElement(String type, String label, String price) {
 		this.type = type;
 		this.label = label;
 		this.price = price;
 	}
-
 
 }

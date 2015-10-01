@@ -20,6 +20,7 @@ public class PizzaOrder {
 		ArrayList<PizzaSizeImpl> pizzasizes;
 		HashMap<String, Double> pizzasizeshash;
 		ArrayList<PizzaElementImpl> pizzaelements;
+		ArrayList<PizzaElementImpl> pizzacompleteelements;
 		
 		pizzaService = new PizzaServiceImpl();
 		pizzasizes = pizzaService.getPizzaSizes();
@@ -35,11 +36,17 @@ public class PizzaOrder {
 		pizzaelements = pizzaService.getPizzaElements(2);
 		System.out.println(pizzaelements);
 		
-		// Create a pizza, to see a test PizzaImpl object:
-		pizza = pizzaService.pizzaTest(pizzaelements, pizzasizes);
+		pizzaelements = pizzaService.getPizzaElements(2);
+		System.out.println(pizzaelements);
 		
-		System.out.println(pizza);
-		System.out.println("Total cost is: " + pizza.calcPrice());
+		pizzacompleteelements = pizzaService.getPizzaElements(3);
+		System.out.println(pizzacompleteelements);
+		
+		// Create a pizza, to see a test PizzaImpl object:
+		//pizza = pizzaService.pizzaTest(pizzaelements, pizzasizes);
+		
+		//System.out.println(pizza);
+		//System.out.println("Total cost is: " + pizza.calcPrice());
 		
 		
 	}

@@ -2,18 +2,11 @@ package com.jwad.pizzaperfection.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.List;
-
 import com.jwad.pizzaperfection.domainmodel.PizzaElementImpl;
 
 public class PizzaElementDaoJdbcImpl implements PizzaElementDao {
@@ -51,6 +44,7 @@ public class PizzaElementDaoJdbcImpl implements PizzaElementDao {
 
 		ArrayList<PizzaElementImpl> pizzaElements = new ArrayList<PizzaElementImpl>();
 		String sql = "";
+		DecimalFormat df = new DecimalFormat("##.##");
 		
 		if (complete == 1) {
 			// Select all types of pizza elements
@@ -72,7 +66,7 @@ public class PizzaElementDaoJdbcImpl implements PizzaElementDao {
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()){
-				pizzaElements.add(new PizzaElementImpl(rs.getString("type_label"), rs.getString("label"), rs.getDouble("price")));
+				pizzaElements.add(new PizzaElementImpl(rs.getString("type_label"), rs.getString("label"), rs.getString("price")));
 			}
 			
 			stmt.close();
