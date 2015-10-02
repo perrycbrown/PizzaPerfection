@@ -4,9 +4,9 @@ import javax.servlet.http.*;
 
 import com.jwad.pizzaperfection.domainmodel.PizzaImpl;
 import com.jwad.pizzaperfection.service.PizzaServiceImpl;
+import com.jwad.pizzaperfection.utility.PizzaUtility;
 
 import java.io.*;
- 
  
 @SuppressWarnings("serial")
 public class ReviewServlet extends HttpServlet {
@@ -27,11 +27,13 @@ public class ReviewServlet extends HttpServlet {
     	request.setAttribute("total",String.format("%1$,.2f", total));
      	 
     	//Write to a session:
-    	HttpSession session = request.getSession();
-    	session.setAttribute("pizza", pizza);
-       	getServletContext().getRequestDispatcher("/WEB-INF/Review.jsp").forward(request,  response);
+    	//HttpSession session = request.getSession();
+    	//session.setAttribute("pizza", pizza);
+    	String pizzaid = PizzaUtility.writePizzaToSession(pizza, request);
+    	System.out.println("Here is id: " + pizzaid);
+    	request.setAttribute("pizzaid", pizzaid);
+       	getServletContext().getRequestDispatcher("/WEB-INF/Review.jsp").forward(request, response);
     	
     }
-     
-    
+ 
 }

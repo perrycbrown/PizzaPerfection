@@ -201,6 +201,7 @@
 <tr>
 <td class="text-right">Review your pizza:</td>
 <td class="left">
+<input type="hidden" value="<%= request.getAttribute("pizzaid") %>" name="pizzaid">
 <input type="submit" value="Review It!" class="btn btn-danger">
 </td>
 </tr>

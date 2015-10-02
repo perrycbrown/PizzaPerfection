@@ -44,19 +44,32 @@ public class OptionsServlet extends HttpServlet {
 		pizzacomplete = pizzaService.getPizzaElements(3);
 		session.setAttribute("pizzacomplete", pizzacomplete);
 		
-		PizzaImpl pizza = (PizzaImpl) session.getAttribute("pizza");
-		if (pizza instanceof PizzaImpl){
-			if (!pizza.getCompleteType().equals("")) {
-				completeClass = "active";
-				pizzaClass = "";
+		if (request.getParameterMap().containsKey("pizzaid") && 
+				!((String) request.getParameter("pizzaid")).isEmpty()) {
+			System.out.println("Inside if");
+			PizzaImpl pizza = (PizzaImpl) session.getAttribute((String) request.getParameter("pizzaid"));
+			request.setAttribute("pizza", pizza);
+			System.out.println("Here is pizza: " + pizza);
+			System.out.println("Here is pizzaid: " + request.getParameter("pizzaid"));
+			request.setAttribute("pizzaid",request.getParameter("pizzaid"));
+			
+			if (pizza instanceof PizzaImpl){
+				if (!pizza.getCompleteType().equals("")) {
+					completeClass = "active";
+					pizzaClass = "";
+				}
 			}
 		}
-		
+		else {
+			PizzaImpl pizza = new PizzaImpl();
+			request.setAttribute("pizzaid","");
+			request.setAttribute("pizza", pizza);
+		}
+
 		request.setAttribute("completeClass", completeClass);
 		request.setAttribute("pizzaClass", pizzaClass);
        	getServletContext().getRequestDispatcher("/WEB-INF/Options.jsp").forward(request,  response);
     	
     }
-     
     
 }
