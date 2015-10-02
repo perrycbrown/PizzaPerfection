@@ -44,7 +44,6 @@ public class PizzaElementDaoJdbcImpl implements PizzaElementDao {
 
 		ArrayList<PizzaElementImpl> pizzaElements = new ArrayList<PizzaElementImpl>();
 		String sql = "";
-		DecimalFormat df = new DecimalFormat("##.##");
 		
 		if (complete == 1) {
 			// Select all types of pizza elements

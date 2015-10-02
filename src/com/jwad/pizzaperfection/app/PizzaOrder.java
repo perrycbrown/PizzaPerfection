@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.jwad.pizzaperfection.domainmodel.PizzaElementImpl;
-import com.jwad.pizzaperfection.domainmodel.PizzaImpl;
+//import com.jwad.pizzaperfection.domainmodel.PizzaImpl;
 import com.jwad.pizzaperfection.domainmodel.PizzaSizeImpl;
 import com.jwad.pizzaperfection.service.PizzaServiceImpl;
 
@@ -15,7 +15,7 @@ public class PizzaOrder {
 	 */
 	public static void main(String[] args) {
 		
-		PizzaImpl pizza;
+		//PizzaImpl pizza;
 		PizzaServiceImpl pizzaService;
 		ArrayList<PizzaSizeImpl> pizzasizes;
 		HashMap<String, Double> pizzasizeshash;
