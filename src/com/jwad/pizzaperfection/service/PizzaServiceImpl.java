@@ -81,7 +81,8 @@ public class PizzaServiceImpl implements PizzaService {
 		
 		if (request.getParameter("complete") != null && request.getParameter("complete_price") != null) {
 			pizza = new PizzaImpl(request.getParameter("complete"),
-					Double.parseDouble(request.getParameter("complete_price")) );
+					Double.parseDouble(request.getParameter("complete_price")),
+					Integer.parseInt(request.getParameter("quantity")));
 		}
 		else {
 			pizza = new PizzaImpl(request.getParameter("crust"),
@@ -92,7 +93,8 @@ public class PizzaServiceImpl implements PizzaService {
 					Double.parseDouble(request.getParameter("cheese_price")),
 					request.getParameter("topping"), 
 					Double.parseDouble(request.getParameter("topping_price")),
-					Double.parseDouble(request.getParameter("size_price")) );
+					Double.parseDouble(request.getParameter("size_price")),
+					Integer.parseInt(request.getParameter("quantity")));
 		}
 		
 		return pizza;

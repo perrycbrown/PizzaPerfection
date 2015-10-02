@@ -90,7 +90,6 @@
 		</c:if>
 </c:forEach>
 
-
 <tr>
 <td class="text-right">Size of pizza:</td>
 <td>
@@ -114,7 +113,28 @@
 </tr>
 
 <tr>
-<td class="text-right">Review your pizza:</td>
+<td class="text-right">Number of pizzas:</td>
+<td>
+<select name="quantity" class="form-control" size="1" id="quantity">
+<c:set var="pizzaquantity" scope="session" value="${pizza.getPizzaQuantity()}"/>
+<c:forEach var="i" begin="1" end="10">
+	<c:choose>
+		<c:when test="${pizzaquantity == i}">
+			<option value="${i}" selected>${i}</option>
+		</c:when>
+		<c:otherwise>
+			<option value="${i}" >${i}</option>
+		</c:otherwise>
+	</c:choose>
+</c:forEach>
+
+</select>
+<input type="hidden" name="size_price" value="1.00" id="size_price">
+</td>
+</tr>
+
+<tr>
+<td class="text-right">Review your order:</td>
 <td class="left">
 <input type="submit" value="Review It!" class="btn btn-danger">
 </td>
@@ -156,6 +176,28 @@
 <input type="hidden" name="complete_price" value="1.00" id="complete_price">
 </td>
 </tr>
+
+<tr>
+<td class="text-right">Number of pizzas:</td>
+<td>
+<select name="quantity" class="form-control" size="1" id="quantity">
+<c:set var="pizzaquantity" scope="session" value="${pizza.getPizzaQuantity()}"/>
+<c:forEach var="i" begin="1" end="10">
+	<c:choose>
+		<c:when test="${pizzaquantity == i}">
+			<option value="${i}" selected>${i}</option>
+		</c:when>
+		<c:otherwise>
+			<option value="${i}" >${i}</option>
+		</c:otherwise>
+	</c:choose>
+</c:forEach>
+
+</select>
+<input type="hidden" name="size_price" value="1.00" id="size_price">
+</td>
+</tr>
+
 <tr>
 <td class="text-right">Review your pizza:</td>
 <td class="left">

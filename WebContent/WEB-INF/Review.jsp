@@ -24,55 +24,55 @@
 
 <% if (request.getParameterMap().containsKey("crust")) { %>
 <tr>
-<td>Crust type</td>
+<td class="text-right">Crust type:</td>
 <td>
 <%= request.getParameter("crust") %>
 </td>
 <td>
-&#36;<%= String.format("%-4s", request.getParameter("crust_price")).replace(' ', '0') %>
+&#36;<%= request.getParameter("crust_price") %>
 </td>
 </tr>
 <% } %>
 
 <% if (request.getParameterMap().containsKey("sauce")) { %>
 <tr>
-<td>Sauce type</td>
+<td class="text-right">Sauce type:</td>
 <td>
 <%= request.getParameter("sauce") %>
 </td>
 <td>
-&#36;<%= String.format("%-4s", request.getParameter("sauce_price")).replace(' ', '0') %>
+&#36;<%= request.getParameter("sauce_price") %>
 </td>
 </tr>
 <% } %>
 
 <% if (request.getParameterMap().containsKey("cheese")) { %>
 <tr>
-<td>Cheese type</td>
+<td class="text-right">Cheese type:</td>
 <td>
 <%= request.getParameter("cheese") %>
 </td>
 <td>
-&#36;<%= String.format("%-4s", request.getParameter("cheese_price")).replace(' ', '0') %>
+&#36;<%= request.getParameter("cheese_price") %>
 </td>
 </tr>
 <% } %>
 
 <% if (request.getParameterMap().containsKey("topping")) { %>
 <tr>
-<td>Topping type</td>
+<td class="text-right">Topping type:</td>
 <td>
 <%= request.getParameter("topping") %>
 </td>
 <td>
-&#36;<%= String.format("%-4s", request.getParameter("topping_price")).replace(' ', '0') %>
+&#36;<%= request.getParameter("topping_price") %>
 </td>
 </tr>
 <% } %>
 
 <% if (request.getParameterMap().containsKey("size")) { %>
 <tr>
-<td>Size of pizza:</td>
+<td class="text-right">Size of pizza:</td>
 <td>
 <%= request.getParameter("size") %>
 </td>
@@ -85,11 +85,23 @@ X <%= request.getParameter("size_price") %>
 <% if (request.getParameterMap().containsKey("complete")) { %>
 <tr>
 <td class="text-right">Type of pizza:</td>
-<td>
+<td class="text-right">
 <%= request.getParameter("complete") %>
 </td>
 <td>
-&#36;<%= String.format("%-5s", request.getParameter("complete_price")).replace(' ', '0') %>
+&#36;<%= request.getParameter("complete_price") %>
+</td>
+</tr>
+<% } %>
+
+<% if (request.getParameterMap().containsKey("quantity")) { %>
+<tr>
+<td>&nbsp;</td>
+<td class="text-right">
+Number of pizzas:
+</td>
+<td>
+<%= request.getParameter("quantity") %>
 </td>
 </tr>
 <% } %>
