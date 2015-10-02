@@ -29,8 +29,7 @@ public class ReviewServlet extends HttpServlet {
     	//Write to a session:
     	HttpSession session = request.getSession();
     	session.setAttribute("pizza", pizza);
-    	
-    	request.getRequestDispatcher("/Review.jsp").forward(request, response);
+       	getServletContext().getRequestDispatcher("/WEB-INF/Review.jsp").forward(request,  response);
     	
     }
      

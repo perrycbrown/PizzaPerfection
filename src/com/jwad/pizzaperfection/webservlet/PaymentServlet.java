@@ -22,7 +22,7 @@ public class PaymentServlet extends HttpServlet {
     	PizzaImpl pizza = (PizzaImpl) session.getAttribute("pizza");
     	
        	request.setAttribute("pizza",pizza);
-    	request.getRequestDispatcher("/Payment.jsp").forward(request, response);
+       	getServletContext().getRequestDispatcher("/WEB-INF/Payment.jsp").forward(request,  response);
     	
     }
      

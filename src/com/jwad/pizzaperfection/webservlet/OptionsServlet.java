@@ -54,7 +54,7 @@ public class OptionsServlet extends HttpServlet {
 		
 		request.setAttribute("completeClass", completeClass);
 		request.setAttribute("pizzaClass", pizzaClass);
-    	request.getRequestDispatcher("/Options.jsp").forward(request, response);
+       	getServletContext().getRequestDispatcher("/WEB-INF/Options.jsp").forward(request,  response);
     	
     }
      

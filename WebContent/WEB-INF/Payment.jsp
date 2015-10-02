@@ -13,7 +13,7 @@
 
 <h2>Here are the options you chose for your pizza:</h2>
 
-<% PizzaImpl pizza = (PizzaImpl) session.getAttribute("pizza"); %>
+<% PizzaImpl pizza = (PizzaImpl) request.getAttribute("pizza"); %>
 
 <table class="center">
 
