@@ -11,6 +11,7 @@ public class PizzaImpl implements Pizza {
 	private String toppingType;
 	private double toppingPrice;
 	private double pizzaSize;
+	private int pizzaQuantity;
 	private double totalPrice;
 	private String completeType = "";
 	private double completePrice;
@@ -23,7 +24,8 @@ public class PizzaImpl implements Pizza {
 					double cheesePrice, 
 					String toppingType, 
 					double toppingPrice,
-					double pizzaSize) {
+					double pizzaSize,
+					int pizzaQuantity) {
 		
 		this.crustType = crustType;
 		this.crustPrice = crustPrice;
@@ -34,16 +36,19 @@ public class PizzaImpl implements Pizza {
 		this.toppingType = toppingType;
 		this.toppingPrice = toppingPrice;
 		this.pizzaSize = pizzaSize;
+		this.pizzaQuantity = pizzaQuantity;
 		this.totalPrice = calcPrice();
 		
 	}
 	
 	public PizzaImpl(String completeType,
-					double completePrice) {
+					double completePrice,
+					int pizzaQuantity) {
 		
 		this.setCompleteType(completeType);
 		this.setCompletePrice(completePrice);
-		this.totalPrice = completePrice;
+		this.setPizzaQuantity(pizzaQuantity);
+		this.totalPrice = calcCompletePrice();
 		
 	}
 
@@ -126,8 +131,20 @@ public class PizzaImpl implements Pizza {
 	}
 	
 	
+	public int getPizzaQuantity() {
+		return this.pizzaQuantity;
+	}
+
+	public void setPizzaQuantity(int pizzaQuantity) {
+		this.pizzaQuantity = pizzaQuantity;
+	}
+
 	public double calcPrice() {
-		return  (( this.cheesePrice + this.crustPrice + this.saucePrice + this.toppingPrice ) * this.pizzaSize);
+		return  (((this.cheesePrice + this.crustPrice + this.saucePrice + this.toppingPrice) * this.pizzaSize) * this.pizzaQuantity);
+	}
+	
+	public double calcCompletePrice() {
+		return (this.completePrice * this.pizzaQuantity);
 	}
 
 	@Override
