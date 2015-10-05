@@ -44,6 +44,8 @@ public class OptionsServlet extends HttpServlet {
 		pizzacomplete = pizzaService.getPizzaElements(3);
 		session.setAttribute("pizzacomplete", pizzacomplete);
 		
+		// If a pizza id is incoming from form, load that pizza
+		// from session so it can be edited.
 		if (request.getParameterMap().containsKey("pizzaid") && 
 				!((String) request.getParameter("pizzaid")).isEmpty()) {
 			System.out.println("Inside if");
@@ -60,6 +62,8 @@ public class OptionsServlet extends HttpServlet {
 				}
 			}
 		}
+		
+		// Or just load a new form to create a new pizza:
 		else {
 			PizzaImpl pizza = new PizzaImpl();
 			request.setAttribute("pizzaid","");
