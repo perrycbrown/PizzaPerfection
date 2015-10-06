@@ -21,7 +21,7 @@
 <ul class="nav nav-tabs" role="tablist">
 <li role="presentation" class="<%= request.getAttribute("pizzaClass") %> bg-warning"><a href="#buildapizza" aria-controls="home" role="tab" data-toggle="tab">Build-A-Pizza</a></li>
 <li role="presentation" class="<%= request.getAttribute("completeClass") %> bg-warning"><a href="#completepizzas" aria-controls="profile" role="tab" data-toggle="tab">Complete Pizzas</a></li>
-<li role="presentation" class="bg-warning"><a href="../revieworder/" role="tab">Review Pizza Order</a></li>
+<li role="presentation" class="bg-success"><a href="../revieworder/" role="tab">Review Pizza Order</a></li>
 </ul>
 <!--  end tab navigation -->
 

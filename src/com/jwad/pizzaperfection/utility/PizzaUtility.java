@@ -73,10 +73,6 @@ public class PizzaUtility {
 		    String name = (String)e.nextElement();
 			if (session.getAttribute(name) instanceof PizzaImpl) {
 				PizzaImpl pizza = (PizzaImpl) session.getAttribute(name);
-				System.out.println("Got the pizza: " + pizza);
-				System.out.println("Here is complete price: " + pizza.calcPrice());
-				System.out.println("Here is quantity: " + pizza.getPizzaQuantity());
-				System.out.println("Here is complete price: " + pizza.calcCompletePrice());
 				if (pizza.calcPrice() != 0) {
 					total += (Double) pizza.calcPrice();
 				}

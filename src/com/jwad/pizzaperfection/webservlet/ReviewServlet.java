@@ -33,12 +33,11 @@ public class ReviewServlet extends HttpServlet {
     	if (request.getParameterMap().containsKey("pizzaid") && 
 				!((String) request.getParameter("pizzaid")).isEmpty()) {
     		pizzaid = PizzaUtility.updatePizzaInSession(request.getParameter("pizzaid"), pizza, request);
-    		System.out.println("inside if statement");
     	}
     	else {
     		pizzaid = PizzaUtility.writePizzaToSession(pizza, request);
     	}
-    	System.out.println("Here is id: " + pizzaid);
+    	
     	request.setAttribute("pizzaid", pizzaid);
        	getServletContext().getRequestDispatcher("/WEB-INF/Review.jsp").forward(request, response);
     	

@@ -50,11 +50,8 @@ public class OptionsServlet extends HttpServlet {
 		// from session so it can be edited.
 		if (request.getParameterMap().containsKey("pizzaid") && 
 				!((String) request.getParameter("pizzaid")).isEmpty()) {
-			System.out.println("Inside if");
 			PizzaImpl pizza = (PizzaImpl) session.getAttribute((String) request.getParameter("pizzaid"));
 			request.setAttribute("pizza", pizza);
-			System.out.println("Here is pizza: " + pizza);
-			System.out.println("Here is pizzaid: " + request.getParameter("pizzaid"));
 			request.setAttribute("pizzaid",request.getParameter("pizzaid"));
 			
 			if (pizza instanceof PizzaImpl){
