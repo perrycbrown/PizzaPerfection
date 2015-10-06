@@ -3,14 +3,15 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 import com.jwad.pizzaperfection.domainmodel.PizzaImpl;
+import com.jwad.pizzaperfection.service.PizzaServiceImpl;
 import com.jwad.pizzaperfection.utility.PizzaUtility;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
  
- 
 @SuppressWarnings("serial")
-public class PaymentServlet extends HttpServlet {
+public class DeleteServlet extends HttpServlet {
  
     public void doGet(HttpServletRequest request,HttpServletResponse response)
                                          throws ServletException, IOException {
@@ -19,17 +20,15 @@ public class PaymentServlet extends HttpServlet {
  
     public void doPost(HttpServletRequest request,HttpServletResponse response)
                                         throws ServletException, IOException {
- 
-    	// From session, get all the pizzas ordered:
-    	HashMap<String,PizzaImpl> AllPizzas = PizzaUtility.getAllPizzasFromSession(request);
     	
-    	// Also get the total price of all pizzas:
-    	double grandTotal = PizzaUtility.totalAllPizzasFromSession(request);
+    	if (request.getParameterMap().containsKey("pizzaid") && 
+				!((String) request.getParameter("pizzaid")).isEmpty()) {
+    		PizzaUtility.deletePizzaFromSession(request.getParameter("pizzaid"), request);
+    	}    	
  
-    	request.setAttribute("allpizzas", AllPizzas);
-    	request.setAttribute("grandtotal", grandTotal);
-       	getServletContext().getRequestDispatcher("/WEB-INF/Payment.jsp").forward(request,  response);
+    	response.sendRedirect("../revieworder/");
+       	//getServletContext().getRequestDispatcher("com.jwad.pizzaperfection.webservlet.ReviewOrderServlet").forward(request, response);
     	
     }
-     
+ 
 }

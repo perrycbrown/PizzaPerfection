@@ -4,9 +4,9 @@ import javax.servlet.http.*;
 
 import com.jwad.pizzaperfection.domainmodel.PizzaImpl;
 import com.jwad.pizzaperfection.service.PizzaServiceImpl;
+import com.jwad.pizzaperfection.utility.PizzaUtility;
 
 import java.io.*;
- 
  
 @SuppressWarnings("serial")
 public class ReviewServlet extends HttpServlet {
@@ -20,6 +20,7 @@ public class ReviewServlet extends HttpServlet {
                                         throws ServletException, IOException {
     	PizzaServiceImpl pizzaService;
     	pizzaService = new PizzaServiceImpl();
+    	String pizzaid;
     	// Gather incoming pizza order info into a pizza object, and calculate
     	// price also:
     	PizzaImpl pizza = pizzaService.createPizzaFromRequest(request);
@@ -27,11 +28,20 @@ public class ReviewServlet extends HttpServlet {
     	request.setAttribute("total",String.format("%1$,.2f", total));
      	 
     	//Write to a session:
-    	HttpSession session = request.getSession();
-    	session.setAttribute("pizza", pizza);
-       	getServletContext().getRequestDispatcher("/WEB-INF/Review.jsp").forward(request,  response);
+    	//HttpSession session = request.getSession();
+    	//session.setAttribute("pizza", pizza);
+    	if (request.getParameterMap().containsKey("pizzaid") && 
+				!((String) request.getParameter("pizzaid")).isEmpty()) {
+    		pizzaid = PizzaUtility.updatePizzaInSession(request.getParameter("pizzaid"), pizza, request);
+    		System.out.println("inside if statement");
+    	}
+    	else {
+    		pizzaid = PizzaUtility.writePizzaToSession(pizza, request);
+    	}
+    	System.out.println("Here is id: " + pizzaid);
+    	request.setAttribute("pizzaid", pizzaid);
+       	getServletContext().getRequestDispatcher("/WEB-INF/Review.jsp").forward(request, response);
     	
     }
-     
-    
+ 
 }

@@ -17,8 +17,7 @@
 	<div class="row center-block">
   		<div class="col-md-12">
 
-<h2 class="text-center">Here is the pizza you chose:</h2>
-<form action="../payment/">
+<h2 class="text-center">This pizza has been added to your order:</h2>
 
 <table class="table table-striped table-bordered table-hover">
 
@@ -118,20 +117,24 @@ Order total =
 
 <tr>
 <td class="text-right">
+
+<form action="../options/" method="post">
 Go back and&nbsp;
-<a href="../options/"><button type="button" class="btn btn-primary">Change</button></a>
-&nbsp;your order, or &rarr;
+<button type="submit" class="btn btn-primary">Change</button>
+&nbsp;this pizza, or <a href="../options/"><button type="button" class="btn btn-primary">Add a new pizza</button></a>, or &rarr;
+<input type="hidden" value="<%= request.getAttribute("pizzaid") %>" name="pizzaid">
+</form>
 </td>
 <td align="right">
-Finish and pay:
+Review your complete order:
 </td>
 <td>
-<a href="../payment/"><button type="button" class="btn btn-danger">Pay It!</button></a>
+<a href="../revieworder/"><button type="button" class="btn btn-danger">Review Order</button></a>
 </td>
 </tr>
 
 </table>
-</form>
+
 
 </div>
 </div>

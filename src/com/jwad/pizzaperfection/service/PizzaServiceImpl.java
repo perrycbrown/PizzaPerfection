@@ -93,6 +93,7 @@ public class PizzaServiceImpl implements PizzaService {
 					Double.parseDouble(request.getParameter("cheese_price")),
 					request.getParameter("topping"), 
 					Double.parseDouble(request.getParameter("topping_price")),
+					request.getParameter("size"),
 					Double.parseDouble(request.getParameter("size_price")),
 					Integer.parseInt(request.getParameter("quantity")));
 		}

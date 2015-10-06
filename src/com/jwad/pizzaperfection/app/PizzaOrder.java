@@ -2,6 +2,7 @@ package com.jwad.pizzaperfection.app;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.UUID;
 
 import com.jwad.pizzaperfection.domainmodel.PizzaElementImpl;
 //import com.jwad.pizzaperfection.domainmodel.PizzaImpl;
@@ -47,6 +48,9 @@ public class PizzaOrder {
 		
 		//System.out.println(pizza);
 		//System.out.println("Total cost is: " + pizza.calcPrice());
+		
+		String pizzaid = UUID.randomUUID().toString();
+		System.out.println("Here is id: " + pizzaid);
 		
 		
 	}

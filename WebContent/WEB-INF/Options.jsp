@@ -19,8 +19,9 @@
   		
 <!--  tab navigation -->
 <ul class="nav nav-tabs" role="tablist">
-<li role="presentation" class="<%= request.getAttribute("pizzaClass") %>"><a href="#buildapizza" aria-controls="home" role="tab" data-toggle="tab">Build-A-Pizza</a></li>
-<li role="presentation" class="<%= request.getAttribute("completeClass") %>"><a href="#completepizzas" aria-controls="profile" role="tab" data-toggle="tab">Complete Pizzas</a></li>
+<li role="presentation" class="<%= request.getAttribute("pizzaClass") %> bg-warning"><a href="#buildapizza" aria-controls="home" role="tab" data-toggle="tab">Build-A-Pizza</a></li>
+<li role="presentation" class="<%= request.getAttribute("completeClass") %> bg-warning"><a href="#completepizzas" aria-controls="profile" role="tab" data-toggle="tab">Complete Pizzas</a></li>
+<li role="presentation" class="bg-warning"><a href="../revieworder/" role="tab">Review Pizza Order</a></li>
 </ul>
 <!--  end tab navigation -->
 
@@ -134,9 +135,10 @@
 </tr>
 
 <tr>
-<td class="text-right">Review your order:</td>
+<td class="text-right">Add and review your pizza:</td>
 <td class="left">
-<input type="submit" value="Review It!" class="btn btn-danger">
+<input type="hidden" value="<%= request.getAttribute("pizzaid") %>" name="pizzaid">
+<input type="submit" value="Go!" class="btn btn-danger">
 </td>
 </tr>
 
@@ -201,6 +203,7 @@
 <tr>
 <td class="text-right">Review your pizza:</td>
 <td class="left">
+<input type="hidden" value="<%= request.getAttribute("pizzaid") %>" name="pizzaid">
 <input type="submit" value="Review It!" class="btn btn-danger">
 </td>
 </tr>
