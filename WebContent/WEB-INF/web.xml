@@ -34,6 +34,15 @@
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>DeleteServlet</servlet-name>
+		<servlet-class>com.jwad.pizzaperfection.webservlet.DeleteServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DeleteServlet</servlet-name>
+		<url-pattern>/delete/</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>PaymentServlet</servlet-name>
 		<servlet-class>com.jwad.pizzaperfection.webservlet.PaymentServlet</servlet-class>
 	</servlet>

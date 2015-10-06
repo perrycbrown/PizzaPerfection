@@ -20,6 +20,7 @@ public class ReviewServlet extends HttpServlet {
                                         throws ServletException, IOException {
     	PizzaServiceImpl pizzaService;
     	pizzaService = new PizzaServiceImpl();
+    	String pizzaid;
     	// Gather incoming pizza order info into a pizza object, and calculate
     	// price also:
     	PizzaImpl pizza = pizzaService.createPizzaFromRequest(request);
@@ -29,7 +30,14 @@ public class ReviewServlet extends HttpServlet {
     	//Write to a session:
     	//HttpSession session = request.getSession();
     	//session.setAttribute("pizza", pizza);
-    	String pizzaid = PizzaUtility.writePizzaToSession(pizza, request);
+    	if (request.getParameterMap().containsKey("pizzaid") && 
+				!((String) request.getParameter("pizzaid")).isEmpty()) {
+    		pizzaid = PizzaUtility.updatePizzaInSession(request.getParameter("pizzaid"), pizza, request);
+    		System.out.println("inside if statement");
+    	}
+    	else {
+    		pizzaid = PizzaUtility.writePizzaToSession(pizza, request);
+    	}
     	System.out.println("Here is id: " + pizzaid);
     	request.setAttribute("pizzaid", pizzaid);
        	getServletContext().getRequestDispatcher("/WEB-INF/Review.jsp").forward(request, response);

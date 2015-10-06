@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.jwad.pizzaperfection.domainmodel.PizzaImpl"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -11,36 +11,12 @@
 </head>
 <body>
 
-<h2>Here are the options you chose for your pizza:</h2>
+<h2>Order total is:</h2>
 
-<% PizzaImpl pizza = (PizzaImpl) request.getAttribute("pizza"); %>
-
-<table class="center">
-
-<tr>
-<td>Crust:</td>
-<td>
-<%= pizza.getCrustType() %>
-</td>
-<td>
-&#36;<%= String.format("%1$,.2f", pizza.getCrustPrice()) %>
-</td>
-</tr>
-
-<tr>
-<td>Sauce:</td>
-<td>
-<%= pizza.getSauceType() %>
-</td>
-<td>
-&#36;<%= String.format("%1$,.2f", pizza.getSaucePrice()) %>
-</td>
-</tr>
-
-
-
-</table>
-
+<%
+Double grandtotal = (Double) request.getAttribute("grandtotal");
+%>
+<strong>Order total = <fmt:formatNumber value="${grandtotal}" type="currency"/></strong>
 
 
 </body>

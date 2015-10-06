@@ -8,6 +8,7 @@ import com.jwad.pizzaperfection.utility.PizzaUtility;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
  
 @SuppressWarnings("serial")
 public class ReviewOrderServlet extends HttpServlet {
@@ -21,11 +22,13 @@ public class ReviewOrderServlet extends HttpServlet {
                                         throws ServletException, IOException {
     	
     	// From session, get all the pizzas ordered:
-    	ArrayList<PizzaImpl> AllPizzas = PizzaUtility.getAllPizzasFromSession(request);
+    	HashMap<String,PizzaImpl> AllPizzas = PizzaUtility.getAllPizzasFromSession(request);
     	
-    	System.out.println("Here is all pizzas: " + AllPizzas);
+    	// Also get the total price of all pizzas:
+    	double grandTotal = PizzaUtility.totalAllPizzasFromSession(request);
  
     	request.setAttribute("allpizzas", AllPizzas);
+    	request.setAttribute("grandtotal", grandTotal);
        	getServletContext().getRequestDispatcher("/WEB-INF/ReviewOrder.jsp").forward(request, response);
     	
     }
