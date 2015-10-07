@@ -3,11 +3,9 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 import com.jwad.pizzaperfection.domainmodel.PizzaImpl;
-import com.jwad.pizzaperfection.service.PizzaServiceImpl;
 import com.jwad.pizzaperfection.utility.PizzaUtility;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.HashMap;
  
 @SuppressWarnings("serial")

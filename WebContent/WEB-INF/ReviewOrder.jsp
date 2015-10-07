@@ -31,7 +31,7 @@
 				    <div class="panel-heading" role="tab" id="heading${status.count}">
 				      <h4 class="panel-title">
 				        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse${status.count}" aria-expanded="false" aria-controls="collapse${status.count}">
-				          Pizza #${status.count}: <fmt:formatNumber value="${pizzaval.getTotalPrice()}" type="currency"/>&nbsp;&rarr;&nbsp;See details&nbsp|&nbsp;<a href="../options/?pizzaid=${pizza.key}">Change this pizza</a>&nbsp;|&nbsp;<a href="../delete/?pizzaid=${pizza.key}">Delete this pizza</a>
+				          Pizza #${status.count}: <fmt:formatNumber value="${pizzaval.getTotalPrice()}" type="currency"/>&nbsp;&rarr;&nbsp;See details&nbsp&nbsp;<a href="../options/?pizzaid=${pizza.key}" class="btn btn-warning btn-sm">Change this pizza</a>&nbsp;&nbsp;<a href="../delete/?pizzaid=${pizza.key}" class="btn btn-warning btn-sm">Delete this pizza</a>
 				        </a>
 				      </h4>
 				    </div>
