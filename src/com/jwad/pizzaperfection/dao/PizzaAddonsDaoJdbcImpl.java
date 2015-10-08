@@ -47,19 +47,19 @@ public class PizzaAddonsDaoJdbcImpl implements PizzaAddonsDao {
 		
 		if (type == 0) {
 			// Select all types of pizza addons
-			sql = "SELECT price, label, type_label FROM pizzaperfection.pizza_addons AS pa LEFT JOIN pizza_addons_type AS pat ON pa.type = pat.id;";
+			sql = "SELECT pa.id, price, label, type_label FROM pizzaperfection.pizza_addons AS pa LEFT JOIN pizza_addons_type AS pat ON pa.type = pat.id;";
 		}
 		else if (type == 1) {
 			// Select all drinks addons
-			sql = "SELECT price, label, type_label FROM pizzaperfection.pizza_addons AS pa LEFT JOIN pizza_addons_type AS pat ON pa.type = pat.id WHERE pa.type = 1;";
+			sql = "SELECT pa.id, price, label, type_label FROM pizzaperfection.pizza_addons AS pa LEFT JOIN pizza_addons_type AS pat ON pa.type = pat.id WHERE pa.type = 1;";
 		}
 		else if (type == 2) {
 			// Select only the bread addons
-			sql = "SELECT price, label, type_label FROM pizzaperfection.pizza_addons AS pa LEFT JOIN pizza_addons_type AS pat ON pa.type = pat.id WHERE pa.type = 2;";
+			sql = "SELECT pa.id, price, label, type_label FROM pizzaperfection.pizza_addons AS pa LEFT JOIN pizza_addons_type AS pat ON pa.type = pat.id WHERE pa.type = 2;";
 		}
 		else if (type == 3) {
 			// Select only the dessert addons
-			sql = "SELECT price, label, type_label FROM pizzaperfection.pizza_addons AS pa LEFT JOIN pizza_addons_type AS pat ON pa.type = pat.id WHERE pa.type = 3;";
+			sql = "SELECT pa.id, price, label, type_label FROM pizzaperfection.pizza_addons AS pa LEFT JOIN pizza_addons_type AS pat ON pa.type = pat.id WHERE pa.type = 3;";
 		}
 		
 		try {
@@ -69,7 +69,7 @@ public class PizzaAddonsDaoJdbcImpl implements PizzaAddonsDao {
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()){
-				pizzaAddons.add(new PizzaAddonsImpl(rs.getString("type_label"), rs.getString("label"), rs.getString("price")));
+				pizzaAddons.add(new PizzaAddonsImpl(rs.getString("id"), rs.getString("label"), rs.getString("price"), rs.getString("type_label")));
 			}
 			
 			stmt.close();

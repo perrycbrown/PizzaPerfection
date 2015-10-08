@@ -35,15 +35,21 @@ public class PizzaAddonsServiceImpl implements PizzaAddonsService {
 	}
 	
 	public PizzaAddonsImpl createPizzaAddonsFromRequest (HttpServletRequest request) {
-		
 
 		PizzaAddonsImpl pizzaAddon = new PizzaAddonsImpl(
+				request.getParameter("id"),
 				request.getParameter("label"),
-				request.getParameter("price")
+				request.getParameter("price"),
+				request.getParameter("type_label")
 				);
 
 		return pizzaAddon;
 		
+	}
+
+	@Override
+	public String toString() {
+		return "PizzaAddonsServiceImpl [pizzaAddons=" + pizzaAddons + "]";
 	}
 
 }
