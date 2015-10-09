@@ -3,9 +3,12 @@ package com.jwad.pizzaperfection.utility;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.UUID;
+
+import com.jwad.pizzaperfection.domainmodel.PizzaAddonsImpl;
 import com.jwad.pizzaperfection.domainmodel.PizzaImpl;
 
 public class PizzaUtility {
@@ -39,11 +42,11 @@ public class PizzaUtility {
 		
 	}
 	
-	public static String deletePizzaFromSession(String pizzaid, HttpServletRequest request) {
+	public static String deleteItemFromSession(String sessionkey, HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
-		session.removeAttribute(pizzaid);
-		return pizzaid;
+		session.removeAttribute(sessionkey);
+		return sessionkey;
 
 	}
 	
@@ -60,6 +63,30 @@ public class PizzaUtility {
 		}
 		
 		return AllPizzas;
+		
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static ArrayList<PizzaAddonsImpl> getPizzaAddonsFromSession(String addonskey, HttpServletRequest request) {
+		
+		ArrayList<PizzaAddonsImpl> PizzaAddons = new ArrayList<PizzaAddonsImpl>();
+		HttpSession session = request.getSession();
+		PizzaAddons = (ArrayList<PizzaAddonsImpl>) session.getAttribute(addonskey);
+		return PizzaAddons;
+		
+	}
+	
+	public static double totalAllPizzaAddons(ArrayList<PizzaAddonsImpl> PizzaAddons) {
+		
+		double total = 0;
+		
+		for (PizzaAddonsImpl addon: PizzaAddons) { 
+			if (Double.parseDouble(addon.getPrice()) != 0) {
+				total += Double.parseDouble(addon.getPrice());
+			}
+		}
+		
+		return total;
 		
 	}
 	
@@ -95,6 +122,24 @@ public class PizzaUtility {
 		else {
 			return false;
 		}
+		
+	}
+
+	public static String writePizzaAddonsToSession(
+			ArrayList<PizzaAddonsImpl> pizzaAddons, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		String pizzaAddonsId = UUID.randomUUID().toString();
+		session.setAttribute(pizzaAddonsId, pizzaAddons);
+		return pizzaAddonsId;
+		
+	}
+
+	public static String updatePizzaAddonsInSession( String pizzaAddonsId, ArrayList<PizzaAddonsImpl> pizzaAddons, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		session.setAttribute(pizzaAddonsId, pizzaAddons);
+		return pizzaAddonsId;
 		
 	}
 	

@@ -22,8 +22,8 @@
 
 			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 			  <div class="panel panel-default">
-<c:choose>
-	<c:when test="${not empty allpizzas}">
+
+	<c:if test="${not empty allpizzas}">
 		<c:forEach items="${allpizzas}" var="pizza" varStatus = "status">
 		<c:set var="pizzaval" scope="request" value="${pizza.value}"/>
 
@@ -140,17 +140,61 @@
 					</div>
 				  </div>
 		</c:forEach>
-	</c:when>
-	<c:otherwise>
-					<p class="text-center">You don't have any pizzas in your order</p>
-	</c:otherwise>
-</c:choose>
+	</c:if>
+	<c:if test="${not empty alladdons}">
+
+	  <div class="panel panel-default">
+	    <div class="panel-heading" role="tab" id="addons">
+	      <h4 class="panel-title">
+	        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseaddon${status.count}" aria-expanded="false" aria-controls="collapseaddon${status.count}">
+	          Addons: <fmt:formatNumber value="<%= request.getAttribute(\"grandTotalAddons\") %>" type="currency"/>&nbsp;&rarr;&nbsp;See details&nbsp&nbsp;<a href="../options/?addonsid=<%= session.getAttribute("addonsid") %>" class="btn btn-warning btn-sm">Change these addons</a>&nbsp;&nbsp;<a href="../delete/?addonsid=<%= session.getAttribute("addonsid") %>" class="btn btn-warning btn-sm">Delete these addons</a>
+	        </a>
+	      </h4>
+	    </div>
+	    <div id="collapseaddon" class="panel-collapse collapse" role="tabpanel" aria-labelledby="addons">
+	      <div class="panel-body">
+
+			<table class="table table-striped table-bordered table-hover">
+			<c:forEach items="${alladdons}" var="addon" varStatus = "status">
+			
+				<c:if test="${not empty addon.getLabel()}">
+				<tr>
+				<td class="text-right">${addon.getType_label()}</td>
+				<td>
+				${addon.getLabel()}
+				</td>
+				<td>
+				<fmt:formatNumber value="${addon.getPrice()}" type="currency"/>
+				</td>
+				</tr>
+				</c:if>
+
+			</c:forEach>
+			
+				<tr>
+				<td class="text-right">&nbsp;</td>
+				<td>
+				Total price:
+				</td>
+				<td>
+				<fmt:formatNumber value="<%= request.getAttribute(\"grandTotalAddons\") %>" type="currency"/>
+				</td>
+				</tr>
+			</table>
+		  </div>
+		</div>
+	  </div>
+
+	</c:if>
+	<c:if test="${empty alladdons && empty allpizzas}">
+					<p class="text-center"><strong>You don't have anything in your order</strong></p>
+	</c:if>
+
 
 				</div>
 			  </div>
 
 			<table>
-			
 			<tr>
 			<td class="text-left">
 			<%
@@ -169,7 +213,7 @@
 			
 			<tr>
 			<td class="text-left">
-			<a href="../options/"><button type="button" class="btn btn-primary">Add a new pizza</button></a> or <a href="../payment/"><button type="button" class="btn btn-danger">Finish and Pay</button></a>
+			<a href="../options/"><button type="button" class="btn btn-primary">Add a new item</button></a> or <a href="../payment/"><button type="button" class="btn btn-danger">Finish and Pay</button></a>
 			</td>
 			<td align="right">
 			&nbsp;
@@ -178,7 +222,6 @@
 			
 			</td>
 			</tr>
-			
 			</table>
 		</div>
 	</div>

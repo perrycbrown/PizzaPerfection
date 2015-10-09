@@ -25,6 +25,15 @@
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>ReviewAddonsServlet</servlet-name>
+		<servlet-class>com.jwad.pizzaperfection.webservlet.ReviewAddonsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ReviewAddonsServlet</servlet-name>
+		<url-pattern>/reviewaddons/</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>ReviewOrderServlet</servlet-name>
 		<servlet-class>com.jwad.pizzaperfection.webservlet.ReviewOrderServlet</servlet-class>
 	</servlet>

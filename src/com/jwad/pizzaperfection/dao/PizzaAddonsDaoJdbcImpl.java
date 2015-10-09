@@ -23,9 +23,33 @@ public class PizzaAddonsDaoJdbcImpl implements PizzaAddonsDao {
 	}
 
 	@Override
-	public PizzaAddonsImpl get(int addon) {
-		// TODO Auto-generated method stub
-		return null;
+	public PizzaAddonsImpl get(int id) {
+		// Select pizza addon by id passed in
+		// and pass back a PizzaAddonImpl object:
+		String sql = "SELECT pa.id, price, label, type_label FROM pizzaperfection.pizza_addons AS pa LEFT JOIN pizza_addons_type AS pat ON pa.type = pat.id WHERE pa.id='" + id + "';";
+		PizzaAddonsImpl addon = null;
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			String url = "jdbc:mysql://localhost/pizzaperfection";
+			Connection con = DriverManager.getConnection(url, "root", "srumn78z");
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()){
+				addon = new PizzaAddonsImpl(rs.getString("id"), rs.getString("label"), rs.getString("price"), rs.getString("type_label"));
+			}
+			
+			stmt.close();
+            con.close();
+
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return addon;
 	}
 
 	@Override

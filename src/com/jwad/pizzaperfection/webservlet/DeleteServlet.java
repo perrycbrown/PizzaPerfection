@@ -19,8 +19,12 @@ public class DeleteServlet extends HttpServlet {
     	
     	if (request.getParameterMap().containsKey("pizzaid") && 
 				!((String) request.getParameter("pizzaid")).isEmpty()) {
-    		PizzaUtility.deletePizzaFromSession(request.getParameter("pizzaid"), request);
-    	}    	
+    		PizzaUtility.deleteItemFromSession(request.getParameter("pizzaid"), request);
+    	} 
+    	else if (request.getParameterMap().containsKey("addonsid") && 
+				!((String) request.getParameter("addonsid")).isEmpty()) {
+    		PizzaUtility.deleteItemFromSession(request.getParameter("addonsid"), request);
+    	} 
  
     	response.sendRedirect("../revieworder/");
        	//getServletContext().getRequestDispatcher("com.jwad.pizzaperfection.webservlet.ReviewOrderServlet").forward(request, response);

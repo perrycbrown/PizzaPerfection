@@ -23,11 +23,13 @@ public class OptionsServlet extends HttpServlet {
         
     }
  
-    public void doPost(HttpServletRequest request,HttpServletResponse response)
+    @SuppressWarnings("unchecked")
+	public void doPost(HttpServletRequest request,HttpServletResponse response)
                                         throws ServletException, IOException {
     	
     	String completeClass = "";
     	String pizzaClass = "active";
+    	String addonsClass = "";
 		PizzaServiceImpl pizzaService;
 		ArrayList<PizzaSizeImpl> pizzasizes;
 		ArrayList<PizzaElementImpl> pizzaelements;
@@ -72,6 +74,19 @@ public class OptionsServlet extends HttpServlet {
 			}
 		}
 		
+		// If an addons id is incoming from form, load that addons ArrayList
+		// from session so it can be edited.
+		else if (request.getParameterMap().containsKey("addonsid") && 
+				!((String) request.getParameter("addonsid")).isEmpty()) {
+			ArrayList<PizzaAddonsImpl> pizzaAddons = (ArrayList<PizzaAddonsImpl>) session.getAttribute((String) request.getParameter("addonsid"));
+			ArrayList<String> ids = pizzaAddonsService.extractIds(pizzaAddons);
+			request.setAttribute("requestedaddonsids", ids);
+			request.setAttribute("addonsid",request.getParameter("addonsid"));
+			completeClass = "";
+			pizzaClass = "";
+			addonsClass = "active";
+		}
+		
 		// Or just load a new form to create a new pizza:
 		else {
 			PizzaImpl pizza = new PizzaImpl();
@@ -81,6 +96,7 @@ public class OptionsServlet extends HttpServlet {
 
 		request.setAttribute("completeClass", completeClass);
 		request.setAttribute("pizzaClass", pizzaClass);
+		request.setAttribute("addonsClass", addonsClass);
        	getServletContext().getRequestDispatcher("/WEB-INF/Options.jsp").forward(request,  response);
     	
     }

@@ -11,6 +11,7 @@ import com.jwad.pizzaperfection.domainmodel.PizzaAddonsImpl;
 public class PizzaAddonsServiceImpl implements PizzaAddonsService {
 	
 	ArrayList<PizzaAddonsImpl> pizzaAddons = new ArrayList<PizzaAddonsImpl>();
+	ArrayList<PizzaAddonsImpl> selectedPizzaAddons = new ArrayList<PizzaAddonsImpl>();
 	private HashMap<String, String> pizzaaddonshash;
 
 	public PizzaAddonsServiceImpl() {
@@ -34,16 +35,52 @@ public class PizzaAddonsServiceImpl implements PizzaAddonsService {
 
 	}
 	
-	public PizzaAddonsImpl createPizzaAddonsFromRequest (HttpServletRequest request) {
+	public ArrayList<PizzaAddonsImpl> createPizzaAddonsFromRequest (HttpServletRequest request) {
+		
+		PizzaAddonsDaoJdbcImpl PizzaAddons = new PizzaAddonsDaoJdbcImpl();
+		ArrayList<PizzaAddonsImpl> selectedPizzaAddons = new ArrayList<PizzaAddonsImpl>();
+		
+		// Get the "addons" params from request:
+		 String[] checkedAddons = request.getParameterValues("addons");
+		
+		// Loop through all the addons, looking up complete info for each,
+		// and assigning that info to a PizzaAddonsImpl object, and collect
+		// each object into the selectedPizzaaddons array:
+		
+		if (checkedAddons != null) {
+			for (String s: checkedAddons) {
+				
+				PizzaAddonsImpl pizzaAddon = PizzaAddons.get(Integer.parseInt(s));
+				selectedPizzaAddons.add(pizzaAddon);
+				
+			}
+		}
 
-		PizzaAddonsImpl pizzaAddon = new PizzaAddonsImpl(
-				request.getParameter("id"),
-				request.getParameter("label"),
-				request.getParameter("price"),
-				request.getParameter("type_label")
-				);
-
-		return pizzaAddon;
+		return selectedPizzaAddons;
+		
+	}
+	
+	public Double getTotalPrice(ArrayList<PizzaAddonsImpl> pizzaAddons) {
+		
+		double total = 0;
+		
+		for (int i=0; i<pizzaAddons.size(); i++) {
+			total += Double.parseDouble(pizzaAddons.get(i).getPrice());
+		}
+		
+		return total;
+		
+	}
+	
+	public ArrayList<String> extractIds (ArrayList<PizzaAddonsImpl> requestedAddons) {
+		
+		ArrayList<String> ids = new ArrayList<String>();
+		
+		for (PizzaAddonsImpl addon: requestedAddons) {
+			ids.add(addon.getId());
+		}
+		
+		return ids;
 		
 	}
 
@@ -51,5 +88,7 @@ public class PizzaAddonsServiceImpl implements PizzaAddonsService {
 	public String toString() {
 		return "PizzaAddonsServiceImpl [pizzaAddons=" + pizzaAddons + "]";
 	}
+
+
 
 }

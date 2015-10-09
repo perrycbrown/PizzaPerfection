@@ -121,7 +121,7 @@ Order total =
 <form action="../options/" method="post">
 Go back and&nbsp;
 <button type="submit" class="btn btn-primary">Change</button>
-&nbsp;this pizza, or <a href="../options/"><button type="button" class="btn btn-primary">Add a new pizza</button></a>, or &rarr;
+&nbsp;this pizza, or <a href="../options/"><button type="button" class="btn btn-primary">Add a new item</button></a>, or &rarr;
 <input type="hidden" value="<%= request.getAttribute("pizzaid") %>" name="pizzaid">
 </form>
 </td>

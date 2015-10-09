@@ -25,11 +25,6 @@ public class PizzaServiceImpl implements PizzaService {
 	@Override
 	public ArrayList<PizzaSizeImpl> getPizzaSizes() {
 			
-		//pizzasizes.add(new PizzaSizeImpl("small", 1.0));
-		//pizzasizes.add(new PizzaSizeImpl("medium", 1.5));
-		//pizzasizes.add(new PizzaSizeImpl("large", 2.0));
-		//pizzasizes.add(new PizzaSizeImpl("extra large", 2.5));		
-		//return pizzasizes;
 		PizzaSizeDaoJdbcImpl PizzaSize = new PizzaSizeDaoJdbcImpl();
 		return PizzaSize.list();
 		
@@ -38,15 +33,6 @@ public class PizzaServiceImpl implements PizzaService {
 	@Override
 	public ArrayList<PizzaElementImpl> getPizzaElements(int complete) {
 
-		//pizzaelements.add(new PizzaElementImpl("crust", "regular crust", 1.00));
-		//pizzaelements.add(new PizzaElementImpl("crust", "thick crust", 2.00));
-		//pizzaelements.add(new PizzaElementImpl("sauce", "regular sauce", 1.00));
-		//pizzaelements.add(new PizzaElementImpl("sauce", "hot sauce", 2.00));
-		//pizzaelements.add(new PizzaElementImpl("cheese", "regular cheese", 1.00));
-		//pizzaelements.add(new PizzaElementImpl("cheese", "extra cheese", 2.00));
-		//pizzaelements.add(new PizzaElementImpl("topping", "pepperoni", 1.00));
-		//pizzaelements.add(new PizzaElementImpl("topping", "mushroom", 1.00));
-		
 		PizzaElementDaoJdbcImpl PizzaElements = new PizzaElementDaoJdbcImpl();
 		return PizzaElements.list(complete);
 		
@@ -60,22 +46,6 @@ public class PizzaServiceImpl implements PizzaService {
 		return pizzasizeshash;
 
 	}
-	
-	/*public PizzaImpl pizzaTest (ArrayList<PizzaElementImpl> pizzaelements, ArrayList<PizzaSizeImpl> pizzasizes) {
-		
-		pizza = new PizzaImpl(	pizzaelements.get(1).getLabel(), 
-				pizzaelements.get(1).getPrice(), 
-				pizzaelements.get(3).getLabel(), 
-				pizzaelements.get(3).getPrice(), 
-				pizzaelements.get(5).getLabel(), 
-				pizzaelements.get(5).getPrice(),
-				pizzaelements.get(7).getLabel(), 
-				pizzaelements.get(7).getPrice(),
-				pizzasizes.get(1).getMultiplier());
-		
-		return pizza;
-		
-	}*/
 	
 	public PizzaImpl createPizzaFromRequest (HttpServletRequest request) {
 		

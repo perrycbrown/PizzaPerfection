@@ -2,6 +2,8 @@
     pageEncoding="UTF-8" import="com.jwad.pizzaperfection.domainmodel.PizzaImpl" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.jwad.pizzaperfection.domainmodel.PizzaAddonsImpl" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -22,7 +24,7 @@
 <ul class="nav nav-tabs" role="tablist">
 <li role="presentation" class="<%= request.getAttribute("pizzaClass") %> bg-warning"><a href="#buildapizza" aria-controls="home" role="tab" data-toggle="tab">Build-A-Pizza</a></li>
 <li role="presentation" class="<%= request.getAttribute("completeClass") %> bg-warning"><a href="#completepizzas" aria-controls="profile" role="tab" data-toggle="tab">Complete Pizzas</a></li>
-<li role="presentation" class="<%= request.getAttribute("completeClass") %> bg-warning"><a href="#addons" aria-controls="profile" role="tab" data-toggle="tab">Drinks, Desserts, etc.</a></li>
+<li role="presentation" class="<%= request.getAttribute("addonsClass") %> bg-warning"><a href="#addons" aria-controls="profile" role="tab" data-toggle="tab">Drinks, Desserts, etc.</a></li>
 <li role="presentation" class="bg-success"><a href="../revieworder/" role="tab">Review Pizza Order</a></li>
 </ul>
 <!--  end tab navigation -->
@@ -217,8 +219,8 @@
 <!--  end complete pizzas tab -->
 
 <!--  start addons tab -->
-<div role="tabpanel" class="tab-pane fade <%= "in " + request.getAttribute("completeClass") %>" id="addons">
-<form action="../review/" method="post" id="theaddonsform">
+<div role="tabpanel" class="tab-pane fade <%= "in " + request.getAttribute("addonsClass") %>" id="addons">
+<form action="../reviewaddons/" method="post" id="theaddonsform">
 
 <table class="table table-striped table-bordered table-hover">
 <tr>
@@ -229,6 +231,7 @@
 
 <c:forEach items="${pizzaaddons}" var="addon" varStatus = "status">
 <c:set var="type" value="${addon.getType_label()}"  />
+<c:set var="id" value="${addon.getId()}"  />
 
 <c:if test="${type != prevtype || prevtype == ''}">
 <tr>
@@ -238,36 +241,37 @@
 </tr>
 </c:if>
 
+
 <tr>
 <td class="text-right">${addon.getLabel()}</td>
 <td class="left">
 <c:choose>
-	<c:when test="${addon.getLabel() == pizza.getCompleteType()}">
-		<input type="checkbox" name="addons" value="${addon.getId()}" selected>
-	</c:when>
-	<c:otherwise>
-		<input type="checkbox" name="addons" value="${addon.getId()}">
-	</c:otherwise>
+<c:when test="${requestedaddonsids.contains(id)}">
+	<input type="checkbox" name="addons" value="${addon.getId()}" checked>
+</c:when>
+<c:otherwise>
+	<input type="checkbox" name="addons" value="${addon.getId()}">
+</c:otherwise>
 </c:choose>
 &nbsp;<fmt:formatNumber value="${addon.getPrice()}" type="currency"/>
 </td>
 </tr>
+
 <c:set var="prevtype" value="${addon.getType_label()}"  />
 </c:forEach>
 
 <tr>
 <td class="text-right">Review these addons:</td>
 <td class="left">
-<input type="hidden" value="<%= request.getAttribute("addonid") %>" name="addonid">
+<input type="hidden" value="<%= request.getAttribute("addonsid") %>" name="addsonid">
 <input type="submit" value="Review It!" class="btn btn-danger">
 </td>
 </tr>
 </table>
 </form>
-</table>
 
 </div>
-<!--  end complete pizzas tab -->
+<!--  end addons tab -->
 </div>
 
 </div>
