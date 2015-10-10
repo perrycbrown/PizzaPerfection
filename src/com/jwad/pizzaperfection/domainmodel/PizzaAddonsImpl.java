@@ -6,6 +6,7 @@ public class PizzaAddonsImpl implements PizzaAddons {
 	private String price;
 	private String type_label;
 	private String id;
+	private int quantity;
 	
 
 	public PizzaAddonsImpl(String id, String label, String price, String type_label) {
@@ -60,6 +61,14 @@ public class PizzaAddonsImpl implements PizzaAddons {
 
 	public void setPrice(String price) {
 		this.price = price;
+	}
+
+	public int getQuantity() {
+		return this.quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 
 }
