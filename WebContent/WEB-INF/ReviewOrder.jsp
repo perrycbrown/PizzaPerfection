@@ -164,7 +164,7 @@
 				${addon.getLabel()}
 				</td>
 				<td>
-				<fmt:formatNumber value="${addon.getPrice()}" type="currency"/>
+				<fmt:formatNumber value="${addon.getPrice()}" type="currency"/>&nbsp;ea.&nbsp;X&nbsp;${addon.getQuantity()}&nbsp;=&nbsp;<fmt:formatNumber value="${addon.getTotal()}" type="currency"/>
 				</td>
 				</tr>
 				</c:if>

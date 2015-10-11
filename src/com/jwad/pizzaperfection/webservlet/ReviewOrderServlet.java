@@ -4,6 +4,7 @@ import javax.servlet.http.*;
 
 import com.jwad.pizzaperfection.domainmodel.PizzaAddonsImpl;
 import com.jwad.pizzaperfection.domainmodel.PizzaImpl;
+import com.jwad.pizzaperfection.service.PizzaAddonsServiceImpl;
 import com.jwad.pizzaperfection.utility.PizzaUtility;
 
 import java.io.*;
@@ -23,6 +24,7 @@ public class ReviewOrderServlet extends HttpServlet {
     	
     	double grandTotalAddons = 0;
     	ArrayList<PizzaAddonsImpl> PizzaAddons = new ArrayList<PizzaAddonsImpl>();
+    	PizzaAddonsServiceImpl pizzaAddonsService = new PizzaAddonsServiceImpl();
     	
     	// From session, get all the pizzas ordered:
     	HashMap<String,PizzaImpl> AllPizzas = PizzaUtility.getAllPizzasFromSession(request);
@@ -36,7 +38,7 @@ public class ReviewOrderServlet extends HttpServlet {
 		PizzaAddons = PizzaUtility.getPizzaAddonsFromSession((String) session.getAttribute("addonsid"), request);
     	// Also get the total price of all addons:
 		if (PizzaAddons != null) {
-			grandTotalAddons = PizzaUtility.totalAllPizzaAddons(PizzaAddons);
+			grandTotalAddons = pizzaAddonsService.getTotalPrice(PizzaAddons);
 		}
     	
     	double grandTotal = grandTotalPizzas + grandTotalAddons;
