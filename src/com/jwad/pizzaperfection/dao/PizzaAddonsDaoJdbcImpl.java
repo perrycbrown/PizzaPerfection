@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.jwad.pizzaperfection.domainmodel.PizzaAddonsImpl;
 
 public class PizzaAddonsDaoJdbcImpl implements PizzaAddonsDao {
@@ -22,8 +24,7 @@ public class PizzaAddonsDaoJdbcImpl implements PizzaAddonsDao {
 
 	}
 
-	@Override
-	public PizzaAddonsImpl get(int id) {
+	public PizzaAddonsImpl get(int id, String quantity) {
 		// Select pizza addon by id passed in
 		// and pass back a PizzaAddonImpl object:
 		String sql = "SELECT pa.id, price, label, type_label FROM pizzaperfection.pizza_addons AS pa LEFT JOIN pizza_addons_type AS pat ON pa.type = pat.id WHERE pa.id='" + id + "';";
@@ -36,7 +37,7 @@ public class PizzaAddonsDaoJdbcImpl implements PizzaAddonsDao {
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()){
-				addon = new PizzaAddonsImpl(rs.getString("id"), rs.getString("label"), rs.getString("price"), rs.getString("type_label"));
+				addon = new PizzaAddonsImpl(rs.getString("id"), rs.getString("label"), rs.getString("price"), rs.getString("type_label"), quantity);
 			}
 			
 			stmt.close();
@@ -112,6 +113,12 @@ public class PizzaAddonsDaoJdbcImpl implements PizzaAddonsDao {
 
 	@Override
 	public List<PizzaAddonsImpl> list() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public PizzaAddonsImpl get(int addon, HttpServletRequest request) {
 		// TODO Auto-generated method stub
 		return null;
 	}

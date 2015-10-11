@@ -40,7 +40,7 @@
 </td>
 <td class="text-right">${addon.getLabel()}</td>
 <td class="left">
-<fmt:formatNumber value="${addon.getPrice()}" type="currency"/>
+<fmt:formatNumber value="${addon.getPrice()}" type="currency"/>&nbsp;X&nbsp;${addon.getQuantity()}&nbsp;=&nbsp;<fmt:formatNumber value="${addon.getTotal()}" type="currency"/>
 </td>
 </tr>
 <c:set var="prevtype" value="${addon.getType_label()}"  />

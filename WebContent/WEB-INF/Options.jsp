@@ -250,19 +250,19 @@
 <td class="text-right">${addon.getLabel()}</td>
 <td class="left">
 <c:choose>
-<c:when test="${requestedaddonsids.contains(id)}">
+<c:when test="${requestedaddonsids.containsKey(id)}">
 	<input type="checkbox" name="addons" value="${addon.getId()}" id="${addon.getId()}_checkbox" checked onclick="select_quantity(this)">
 </c:when>
 <c:otherwise>
 	<input type="checkbox" name="addons" value="${addon.getId()}" id="${addon.getId()}_checkbox" onclick="select_quantity(this)">
 </c:otherwise>
 </c:choose>
-&nbsp;<fmt:formatNumber value="${addon.getPrice()}" type="currency"/>
+&nbsp;<fmt:formatNumber value="${addon.getPrice()}" type="currency"/>&nbsp;ea.
 </td>
 <td>
 <select name="${addon.getId()}_quantity" class="form-control" size="1" id="${addon.getId()}_quantity" onchange="set_checkbox(this)">
 <option value="">Select one:</option>
-<c:set var="addonquantity" scope="session" value="${addon.getQuantity()}"/>
+<c:set var="addonquantity" scope="application" value="${requestedaddonsids.get(addon.getId())}"/>
 <c:forEach var="i" begin="1" end="10">
 	<c:choose>
 		<c:when test="${addonquantity == i}">

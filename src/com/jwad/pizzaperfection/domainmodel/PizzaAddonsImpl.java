@@ -6,9 +6,19 @@ public class PizzaAddonsImpl implements PizzaAddons {
 	private String price;
 	private String type_label;
 	private String id;
-	private int quantity;
+	private String quantity;
+	private double total;
 	
 
+	public PizzaAddonsImpl(String id, String label, String price, String type_label, String quantity) {
+		this.id = id;
+		this.label = label;
+		this.price = price;
+		this.type_label = type_label;
+		this.quantity = quantity;
+		this.setTotal(Double.parseDouble(price) * Double.parseDouble(quantity));
+	}
+	
 	public PizzaAddonsImpl(String id, String label, String price, String type_label) {
 		this.id = id;
 		this.label = label;
@@ -34,7 +44,7 @@ public class PizzaAddonsImpl implements PizzaAddons {
 	@Override
 	public String toString() {
 		return "PizzaAddonsImpl [id=" + id + ", label=" + label + ", price=" + price
-				+ ", type_label=" + type_label + "]";
+				+ ", type_label=" + type_label + ", quantity=" + quantity + ", total=" + total +"]";
 	}
 
 	@Override
@@ -63,12 +73,20 @@ public class PizzaAddonsImpl implements PizzaAddons {
 		this.price = price;
 	}
 
-	public int getQuantity() {
+	public String getQuantity() {
 		return this.quantity;
 	}
 
-	public void setQuantity(int quantity) {
+	public void setQuantity(String quantity) {
 		this.quantity = quantity;
+	}
+
+	public double getTotal() {
+		return this.total;
+	}
+
+	public void setTotal(double total) {
+		this.total = total;
 	}
 
 }

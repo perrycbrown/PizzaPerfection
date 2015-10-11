@@ -50,7 +50,10 @@ public class PizzaAddonsServiceImpl implements PizzaAddonsService {
 		if (checkedAddons != null) {
 			for (String s: checkedAddons) {
 				
-				PizzaAddonsImpl pizzaAddon = PizzaAddons.get(Integer.parseInt(s));
+				String qty = request.getParameter(s + "_quantity");
+				
+				PizzaAddonsImpl pizzaAddon = PizzaAddons.get(Integer.parseInt(s), qty);
+				System.out.println("Here is addon: " + pizzaAddon);
 				selectedPizzaAddons.add(pizzaAddon);
 				
 			}
@@ -65,19 +68,19 @@ public class PizzaAddonsServiceImpl implements PizzaAddonsService {
 		double total = 0;
 		
 		for (int i=0; i<pizzaAddons.size(); i++) {
-			total += Double.parseDouble(pizzaAddons.get(i).getPrice());
+			total += pizzaAddons.get(i).getTotal();
 		}
 		
 		return total;
 		
 	}
 	
-	public ArrayList<String> extractIds (ArrayList<PizzaAddonsImpl> requestedAddons) {
+	public HashMap<String, String> extractIds (ArrayList<PizzaAddonsImpl> requestedAddons) {
 		
-		ArrayList<String> ids = new ArrayList<String>();
+		HashMap<String, String> ids = new HashMap<String, String>();
 		
 		for (PizzaAddonsImpl addon: requestedAddons) {
-			ids.add(addon.getId());
+			ids.put( addon.getId(), String.valueOf( addon.getQuantity() ) );
 		}
 		
 		return ids;
