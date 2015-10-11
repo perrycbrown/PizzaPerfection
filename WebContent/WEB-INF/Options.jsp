@@ -224,7 +224,7 @@
 
 <table class="table table-striped table-bordered table-hover">
 <tr>
-<td colspan="2" align="center">
+<td colspan="3" align="center">
 <h2 class="text-center">Choose one or more to add to your order:</h2>
 </td>
 </tr>
@@ -237,6 +237,10 @@
 <tr>
 <td class="text-right"><strong>${addon.getType_label()}</strong></td>
 <td class="left">
+<strong>Price</strong>
+</td>
+<td>
+<strong>Quantity</strong>
 </td>
 </tr>
 </c:if>
@@ -246,14 +250,31 @@
 <td class="text-right">${addon.getLabel()}</td>
 <td class="left">
 <c:choose>
-<c:when test="${requestedaddonsids.contains(id)}">
-	<input type="checkbox" name="addons" value="${addon.getId()}" checked>
+<c:when test="${requestedaddonsids.containsKey(id)}">
+	<input type="checkbox" name="addons" value="${addon.getId()}" id="${addon.getId()}_checkbox" checked onclick="select_quantity(this)">
 </c:when>
 <c:otherwise>
-	<input type="checkbox" name="addons" value="${addon.getId()}">
+	<input type="checkbox" name="addons" value="${addon.getId()}" id="${addon.getId()}_checkbox" onclick="select_quantity(this)">
 </c:otherwise>
 </c:choose>
-&nbsp;<fmt:formatNumber value="${addon.getPrice()}" type="currency"/>
+&nbsp;<fmt:formatNumber value="${addon.getPrice()}" type="currency"/>&nbsp;ea.
+</td>
+<td>
+<select name="${addon.getId()}_quantity" class="form-control" size="1" id="${addon.getId()}_quantity" onchange="set_checkbox(this)">
+<option value="">Select one:</option>
+<c:set var="addonquantity" scope="application" value="${requestedaddonsids.get(addon.getId())}"/>
+<c:forEach var="i" begin="1" end="10">
+	<c:choose>
+		<c:when test="${addonquantity == i}">
+			<option value="${i}" selected>${i}</option>
+		</c:when>
+		<c:otherwise>
+			<option value="${i}" >${i}</option>
+		</c:otherwise>
+	</c:choose>
+</c:forEach>
+
+</select>
 </td>
 </tr>
 
@@ -262,7 +283,7 @@
 
 <tr>
 <td class="text-right">Review these addons:</td>
-<td class="left">
+<td class="left" colspan="2">
 <input type="hidden" value="<%= request.getAttribute("addonsid") %>" name="addsonid">
 <input type="submit" value="Review It!" class="btn btn-danger">
 </td>

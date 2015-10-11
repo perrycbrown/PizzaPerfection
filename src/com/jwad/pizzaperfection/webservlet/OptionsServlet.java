@@ -11,6 +11,7 @@ import com.jwad.pizzaperfection.service.PizzaServiceImpl;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
  
  
 @SuppressWarnings("serial")
@@ -79,7 +80,9 @@ public class OptionsServlet extends HttpServlet {
 		else if (request.getParameterMap().containsKey("addonsid") && 
 				!((String) request.getParameter("addonsid")).isEmpty()) {
 			ArrayList<PizzaAddonsImpl> pizzaAddons = (ArrayList<PizzaAddonsImpl>) session.getAttribute((String) request.getParameter("addonsid"));
-			ArrayList<String> ids = pizzaAddonsService.extractIds(pizzaAddons);
+			HashMap<String, String> ids = pizzaAddonsService.extractIds(pizzaAddons);
+			//request.setAttribute("pizzaaddons", pizzaAddons);
+			//System.out.println("Here is pizzaAddons: " + pizzaAddons);
 			request.setAttribute("requestedaddonsids", ids);
 			request.setAttribute("addonsid",request.getParameter("addonsid"));
 			completeClass = "";

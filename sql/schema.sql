@@ -30,7 +30,7 @@ CREATE TABLE `pizza_addons` (
   PRIMARY KEY (`id`),
   KEY `id_idx` (`type`),
   CONSTRAINT `typeid` FOREIGN KEY (`type`) REFERENCES `pizza_addons_type` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,6 +39,7 @@ CREATE TABLE `pizza_addons` (
 
 LOCK TABLES `pizza_addons` WRITE;
 /*!40000 ALTER TABLE `pizza_addons` DISABLE KEYS */;
+INSERT INTO `pizza_addons` VALUES (1,1,1.00,'small Coke'),(2,1,2.00,'medium Coke'),(3,1,2.50,'large Coke'),(4,1,3.00,'x-large Coke'),(5,2,4.00,'Garlic Bread'),(6,2,5.00,'Garlic Cheese Bread'),(7,3,5.00,'Chocolate Dessert Pizza'),(8,3,5.00,'Cinnamon Dessert Pizza');
 /*!40000 ALTER TABLE `pizza_addons` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -51,9 +52,9 @@ DROP TABLE IF EXISTS `pizza_addons_type`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `pizza_addons_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `label` varchar(100) DEFAULT NULL,
+  `type_label` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -62,6 +63,7 @@ CREATE TABLE `pizza_addons_type` (
 
 LOCK TABLES `pizza_addons_type` WRITE;
 /*!40000 ALTER TABLE `pizza_addons_type` DISABLE KEYS */;
+INSERT INTO `pizza_addons_type` VALUES (1,'Drinks'),(2,'Breads'),(3,'Desserts');
 /*!40000 ALTER TABLE `pizza_addons_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -151,4 +153,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-09-25 16:04:36
+-- Dump completed on 2015-10-11 13:36:35
