@@ -31,6 +31,9 @@ public class OptionsServlet extends HttpServlet {
     	String completeClass = "";
     	String pizzaClass = "active";
     	String addonsClass = "";
+    	String buildapizzaTitle = "Add a pizza by choosing these options:";
+    	String completepizzaTitle = "Add a complete pizza:";
+    	String addonsTitle = "Add one or more to your order:";
 		PizzaServiceImpl pizzaService;
 		ArrayList<PizzaSizeImpl> pizzasizes;
 		ArrayList<PizzaElementImpl> pizzaelements;
@@ -67,10 +70,15 @@ public class OptionsServlet extends HttpServlet {
 			request.setAttribute("pizza", pizza);
 			request.setAttribute("pizzaid",request.getParameter("pizzaid"));
 			
+			completepizzaTitle = "Change to a complete pizza:";
+			buildapizzaTitle = "Modify your build-a-pizza:";
+			
 			if (pizza instanceof PizzaImpl){
 				if (!pizza.getCompleteType().equals("")) {
 					completeClass = "active";
 					pizzaClass = "";
+					completepizzaTitle = "Modify your complete pizza:";
+					buildapizzaTitle = "Change to a build-a-pizza:";
 				}
 			}
 		}
@@ -88,6 +96,10 @@ public class OptionsServlet extends HttpServlet {
 			completeClass = "";
 			pizzaClass = "";
 			addonsClass = "active";
+			
+			addonsTitle = "Modify your addons here:";
+			completepizzaTitle = "Add a complete pizza:";
+			buildapizzaTitle = "Add a build-a-pizza:";
 		}
 		
 		// Or just load a new form to create a new pizza:
@@ -100,6 +112,9 @@ public class OptionsServlet extends HttpServlet {
 		request.setAttribute("completeClass", completeClass);
 		request.setAttribute("pizzaClass", pizzaClass);
 		request.setAttribute("addonsClass", addonsClass);
+		request.setAttribute("addonsTitle", addonsTitle);
+		request.setAttribute("completepizzaTitle", completepizzaTitle);
+		request.setAttribute("buildapizzaTitle", buildapizzaTitle);
        	getServletContext().getRequestDispatcher("/WEB-INF/Options.jsp").forward(request,  response);
     	
     }
