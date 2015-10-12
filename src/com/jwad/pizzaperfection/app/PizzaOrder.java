@@ -2,13 +2,13 @@ package com.jwad.pizzaperfection.app;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.UUID;
+//import java.util.UUID;
 
-import com.jwad.pizzaperfection.domainmodel.PizzaAddons;
+//import com.jwad.pizzaperfection.domainmodel.PizzaAddons;
 import com.jwad.pizzaperfection.domainmodel.PizzaElementImpl;
 //import com.jwad.pizzaperfection.domainmodel.PizzaImpl;
 import com.jwad.pizzaperfection.domainmodel.PizzaSizeImpl;
-import com.jwad.pizzaperfection.service.PizzaAddonsService;
+//import com.jwad.pizzaperfection.service.PizzaAddonsService;
 import com.jwad.pizzaperfection.service.PizzaAddonsServiceImpl;
 import com.jwad.pizzaperfection.service.PizzaServiceImpl;
 
@@ -28,23 +28,23 @@ public class PizzaOrder {
 		
 		pizzaService = new PizzaServiceImpl();
 		pizzasizes = pizzaService.getPizzaSizes();
-		//System.out.println(pizzasizes);
+		System.out.println(pizzasizes);
 		
 		// Probably convert pizzasizes to a HashMap eventually for 
 		// easier lookups? 
 		pizzasizeshash = pizzaService.convertPizzaSizes(pizzasizes);
-		//System.out.println(pizzasizeshash);
+		System.out.println(pizzasizeshash);
 		
 		// Load the element of our pizza, like different types of 
 		// crust, sauce, cheese, etc.
 		pizzaelements = pizzaService.getPizzaElements(2);
-		//System.out.println(pizzaelements);
+		System.out.println(pizzaelements);
 		
 		pizzaelements = pizzaService.getPizzaElements(2);
-		//System.out.println(pizzaelements);
+		System.out.println(pizzaelements);
 		
 		pizzacompleteelements = pizzaService.getPizzaElements(3);
-		//System.out.println(pizzacompleteelements);
+		System.out.println(pizzacompleteelements);
 		
 		// Create a pizza, to see a test PizzaImpl object:
 		//pizza = pizzaService.pizzaTest(pizzaelements, pizzasizes);

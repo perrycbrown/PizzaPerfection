@@ -38,7 +38,7 @@
 <table class="table table-striped table-bordered table-hover">
 <tr>
 <td colspan="3" align="center">
-<h2 class="text-center">Choose the options to build your pizza:</h2>
+<h2 class="text-center"><%= request.getAttribute("buildapizzaTitle") %></h2>
 </td>
 </tr>
 
@@ -59,10 +59,10 @@
 	<c:if test="${type == prevtype || prevtype == ''}">
 		<c:choose>
 			<c:when test="${label == pizza.getCrustType() || label == pizza.getSauceType() || label == pizza.getCheeseType() || label == pizza.getToppingType()}">
-				<option value="${element.getLabel()}" data-price="${element.getPrice()}" selected>${element.getLabel()}</option>
+				<option value="${element.getLabel()}" data-price="${element.getPrice()}" selected>${element.getLabel()} @ <fmt:formatNumber value="${element.getPrice()}" type="currency"/></option>
 			</c:when>
 			<c:otherwise>
-				<option value="${element.getLabel()}" data-price="${element.getPrice()}">${element.getLabel()}</option>
+				<option value="${element.getLabel()}" data-price="${element.getPrice()}">${element.getLabel()} @ <fmt:formatNumber value="${element.getPrice()}" type="currency"/></option>
 			</c:otherwise>
 		</c:choose>
 	</c:if>
@@ -78,10 +78,10 @@
 		<select name="${element.getType()}" class="form-control" size="1" id="${element.getType()}" onChange="change_price(this);">
 		<c:choose>
 			<c:when test="${label == pizza.getCrustType() || label == pizza.getSauceType() || label == pizza.getCheeseType() || label == pizza.getToppingType()}">
-				<option value="${element.getLabel()}" data-price="${element.getPrice()}" selected>${element.getLabel()}</option>
+				<option value="${element.getLabel()}" data-price="${element.getPrice()}" selected>${element.getLabel()} @ <fmt:formatNumber value="${element.getPrice()}" type="currency"/></option>
 			</c:when>
 			<c:otherwise>
-				<option value="${element.getLabel()}" data-price="${element.getPrice()}">${element.getLabel()}</option>
+				<option value="${element.getLabel()}" data-price="${element.getPrice()}">${element.getLabel()} @ <fmt:formatNumber value="${element.getPrice()}" type="currency"/></option>
 			</c:otherwise>
 		</c:choose>	</c:if>
 
@@ -104,10 +104,10 @@
 <c:forEach items="${pizzasizeshash}" var="size">
 	<c:choose>
 		<c:when test="${pizzasize == size.getMultiplier()}">
-			<option value="${size.getLabel()}" data-price="${size.getMultiplier()}" selected>${size.getLabel()}</option>
+			<option value="${size.getLabel()}" data-price="${size.getMultiplier()}" selected>${size.getLabel()} X ${size.getMultiplier()}</option>
 		</c:when>
 		<c:otherwise>
-			<option value="${size.getLabel()}" data-price="${size.getMultiplier()}">${size.getLabel()}</option>
+			<option value="${size.getLabel()}" data-price="${size.getMultiplier()}">${size.getLabel()} X ${size.getMultiplier()}</option>
 		</c:otherwise>
 	</c:choose>
 </c:forEach>
@@ -158,7 +158,7 @@
 <table class="table table-striped table-bordered table-hover">
 <tr>
 <td colspan="3" align="center">
-<h2 class="text-center">Choose a complete pizza:</h2>
+<h2 class="text-center"><%= request.getAttribute("completepizzaTitle") %></h2>
 </td>
 </tr>
 
@@ -170,10 +170,10 @@
 
 <c:choose>
 	<c:when test="${complete.getLabel() == pizza.getCompleteType()}">
-		<option value="${complete.getLabel()}" data-price="${complete.getPrice()}" selected>${complete.getLabel()}</option>
+		<option value="${complete.getLabel()}" data-price="${complete.getPrice()}" selected>${complete.getLabel()} @ <fmt:formatNumber value="${complete.getPrice()}" type="currency"/></option>
 	</c:when>
 	<c:otherwise>
-		<option value="${complete.getLabel()}" data-price="${complete.getPrice()}">${complete.getLabel()}</option>
+		<option value="${complete.getLabel()}" data-price="${complete.getPrice()}">${complete.getLabel()} @ <fmt:formatNumber value="${complete.getPrice()}" type="currency"/></option>
 	</c:otherwise>
 </c:choose>
 
@@ -225,7 +225,7 @@
 <table class="table table-striped table-bordered table-hover">
 <tr>
 <td colspan="3" align="center">
-<h2 class="text-center">Choose one or more to add to your order:</h2>
+<h2 class="text-center"><%= request.getAttribute("addonsTitle") %></h2>
 </td>
 </tr>
 
