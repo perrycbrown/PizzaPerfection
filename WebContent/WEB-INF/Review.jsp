@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.jwad.pizzaperfection.domainmodel.Pizza" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -25,10 +27,10 @@
 <tr>
 <td class="text-right">Crust type:</td>
 <td>
-<%= request.getParameter("crust") %>
+${pizza.getCrustType()}
 </td>
 <td>
-&#36;<%= request.getParameter("crust_price") %>
+<fmt:formatNumber value="${pizza.getCrustPrice()}" type="currency"/>
 </td>
 </tr>
 <% } %>
@@ -37,10 +39,10 @@
 <tr>
 <td class="text-right">Sauce type:</td>
 <td>
-<%= request.getParameter("sauce") %>
+${pizza.getSauceType()}
 </td>
 <td>
-&#36;<%= request.getParameter("sauce_price") %>
+<fmt:formatNumber value="${pizza.getSaucePrice()}" type="currency"/>
 </td>
 </tr>
 <% } %>
@@ -49,10 +51,10 @@
 <tr>
 <td class="text-right">Cheese type:</td>
 <td>
-<%= request.getParameter("cheese") %>
+${pizza.getCheeseType()}
 </td>
 <td>
-&#36;<%= request.getParameter("cheese_price") %>
+<fmt:formatNumber value="${pizza.getCheesePrice()}" type="currency"/>
 </td>
 </tr>
 <% } %>
@@ -61,10 +63,10 @@
 <tr>
 <td class="text-right">Topping type:</td>
 <td>
-<%= request.getParameter("topping") %>
+${pizza.getToppingType()}
 </td>
 <td>
-&#36;<%= request.getParameter("topping_price") %>
+<fmt:formatNumber value="${pizza.getToppingPrice()}" type="currency"/>
 </td>
 </tr>
 <% } %>
@@ -73,10 +75,10 @@
 <tr>
 <td class="text-right">Size of pizza:</td>
 <td>
-<%= request.getParameter("size") %>
+${pizza.getSizeLabel()}
 </td>
 <td>
-X <%= request.getParameter("size_price") %>
+X ${pizza.getSize()}
 </td>
 </tr>
 <% } %>
@@ -85,10 +87,11 @@ X <%= request.getParameter("size_price") %>
 <tr>
 <td class="text-right">Type of pizza:</td>
 <td class="text-right">
-<%= request.getParameter("complete") %>
+${pizza.getCompleteType()}
 </td>
 <td>
-&#36;<%= request.getParameter("complete_price") %>
+
+<fmt:formatNumber value="${pizza.getCompletePrice()}" type="currency"/>
 </td>
 </tr>
 <% } %>
@@ -100,7 +103,7 @@ X <%= request.getParameter("size_price") %>
 Number of pizzas:
 </td>
 <td>
-<%= request.getParameter("quantity") %>
+<fmt:formatNumber value="${pizza.getPizzaQuantity()}" type="number"/>
 </td>
 </tr>
 <% } %>

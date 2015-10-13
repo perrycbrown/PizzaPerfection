@@ -11,6 +11,8 @@ import com.jwad.pizzaperfection.domainmodel.PizzaElementImpl;
 import com.jwad.pizzaperfection.domainmodel.PizzaImpl;
 import com.jwad.pizzaperfection.domainmodel.PizzaSizeImpl;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class PizzaServiceImpl implements PizzaService {
 	
 	HashMap<String, Double> pizzasizeshash = new HashMap<String, Double>();
@@ -55,13 +57,16 @@ public class PizzaServiceImpl implements PizzaService {
 					Integer.parseInt(request.getParameter("quantity")));
 		}
 		else {
+			String[] toppings = request.getParameterValues("topping");
+			String toppings_string = StringUtils.join(toppings, " & ");
+			System.out.println("Here is toppings_string: " + toppings_string);
 			pizza = new PizzaImpl(request.getParameter("crust"),
 					Double.parseDouble(request.getParameter("crust_price")), 
 					request.getParameter("sauce"), 
 					Double.parseDouble(request.getParameter("sauce_price")), 
 					request.getParameter("cheese"),
 					Double.parseDouble(request.getParameter("cheese_price")),
-					request.getParameter("topping"), 
+					toppings_string, 
 					Double.parseDouble(request.getParameter("topping_price")),
 					request.getParameter("size"),
 					Double.parseDouble(request.getParameter("size_price")),

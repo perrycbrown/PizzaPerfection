@@ -1,8 +1,10 @@
 
 function change_price(element) {
-	  var price = $(element).find(':selected').data("price");
-	  //alert(price + " and name is: " + $(element).attr("name"));
-	  $("#"+$(element).attr("name")+"_price").val(price);
+	  var total_price = 0;
+	  $(element).find(':selected').each(function() {
+		  total_price += parseFloat($(this).data("price"));
+	  });
+	  $("#"+$(element).attr("name")+"_price").val(total_price);
 }
 
 function select_quantity(element) {
