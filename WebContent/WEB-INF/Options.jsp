@@ -58,7 +58,7 @@
 
 	<c:if test="${type == prevtype || prevtype == ''}">
 		<c:choose>
-			<c:when test="${label == pizza.getCrustType() || label == pizza.getSauceType() || label == pizza.getCheeseType() || label == pizza.getToppingType()}">
+			<c:when test="${label == pizza.getCrustType() || label == pizza.getSauceType() || label == pizza.getCheeseType() || pizza.getToppingType().contains(label)}">
 				<option value="${element.getLabel()}" data-price="${element.getPrice()}" selected>${element.getLabel()} @ <fmt:formatNumber value="${element.getPrice()}" type="currency"/></option>
 			</c:when>
 			<c:otherwise>
@@ -69,15 +69,22 @@
 
 	<c:if test="${type != prevtype && prevtype != ''}">
 		</select>
-		<input type="hidden" name="${prevtype}_price" value="1.00" id="${prevtype}_price">
+		<c:choose>
+			<c:when test="${type == 'topping'}">
+		<input type="hidden" name="${prevtype}_price" value="${pizza.getToppingPrice()}" id="${prevtype}_price">
+			</c:when>
+			<c:otherwise>
+		<input type="hidden" name="${prevtype}_price" value="${element.getPrice()}" id="${prevtype}_price">			
+			</c:otherwise>
+		</c:choose>
 		</td>
 		</tr>
 		<tr>
 		<td class="text-right">Type of ${element.getType()}:</td>
 		<td>
-		<select name="${element.getType()}" class="form-control" size="1" id="${element.getType()}" onChange="change_price(this);">
+		<select name="${element.getType()}" class="form-control" id="${element.getType()}" onChange="change_price(this);" ${element.getType() == "topping" ? "multiple size='3'" : "size='1'"}>
 		<c:choose>
-			<c:when test="${label == pizza.getCrustType() || label == pizza.getSauceType() || label == pizza.getCheeseType() || label == pizza.getToppingType()}">
+			<c:when test="${label == pizza.getCrustType() || label == pizza.getSauceType() || label == pizza.getCheeseType() || pizza.getToppingType().contains(label)}">
 				<option value="${element.getLabel()}" data-price="${element.getPrice()}" selected>${element.getLabel()} @ <fmt:formatNumber value="${element.getPrice()}" type="currency"/></option>
 			</c:when>
 			<c:otherwise>
@@ -86,10 +93,16 @@
 		</c:choose>	</c:if>
 
 	<c:set var="prevtype" value="${type}"  />
-
 	<c:if test="${status.isLast()}" >
 		</select>
-		<input type="hidden" name="${type}_price" value="1.00" id="${type}_price">
+		<c:choose>
+			<c:when test="${type == 'topping'}">
+		<input type="hidden" name="${prevtype}_price" value="${pizza.getToppingPrice()}" id="${prevtype}_price">
+			</c:when>
+			<c:otherwise>
+		<input type="hidden" name="${prevtype}_price" value="${element.getPrice()}" id="${prevtype}_price">			
+			</c:otherwise>
+		</c:choose>
 		</td>
 		</tr>
 		</c:if>
@@ -300,7 +313,7 @@
 </div>
 <script>
 $( document ).ready(function() {
-	options = ['crust','sauce','cheese','topping','size'];
+	options = ['crust','sauce','cheese','size'];
 	for (i=0; i<options.length; i++) {
     	var price = $("#theform #"+options[i]+" option:selected").attr("data-price");
     	$("#theform #"+options[i]+"_price").val(price);

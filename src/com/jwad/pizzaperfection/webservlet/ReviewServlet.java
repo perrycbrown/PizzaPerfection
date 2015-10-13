@@ -38,6 +38,7 @@ public class ReviewServlet extends HttpServlet {
     		pizzaid = PizzaUtility.writePizzaToSession(pizza, request);
     	}
     	
+    	request.setAttribute("pizza", pizza);
     	request.setAttribute("pizzaid", pizzaid);
        	getServletContext().getRequestDispatcher("/WEB-INF/Review.jsp").forward(request, response);
     	
