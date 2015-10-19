@@ -117,10 +117,10 @@
 <c:forEach items="${pizzasizeshash}" var="size">
 	<c:choose>
 		<c:when test="${pizzasize == size.getMultiplier()}">
-			<option value="${size.getLabel()}" data-price="${size.getMultiplier()}" selected>${size.getLabel()} X ${size.getMultiplier()}</option>
+			<option value="${size.getLabel()}" data-price="${size.getMultiplier()}" selected>${size.getLabel()} (pizza ingrediants X ${size.getMultiplier()})</option>
 		</c:when>
 		<c:otherwise>
-			<option value="${size.getLabel()}" data-price="${size.getMultiplier()}">${size.getLabel()} X ${size.getMultiplier()}</option>
+			<option value="${size.getLabel()}" data-price="${size.getMultiplier()}">${size.getLabel()} (all pizza ingrediants X ${size.getMultiplier()})</option>
 		</c:otherwise>
 	</c:choose>
 </c:forEach>

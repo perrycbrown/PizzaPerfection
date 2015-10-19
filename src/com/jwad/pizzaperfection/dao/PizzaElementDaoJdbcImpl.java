@@ -54,7 +54,7 @@ public class PizzaElementDaoJdbcImpl implements PizzaElementDao {
 		}
 		else if (complete == 3) {
 			// Select only the "complete" pizza elements
-			sql = "SELECT price, label, type_label FROM pizzaperfection.pizza_elements AS pe LEFT JOIN pizza_elements_type AS pet ON pe.type = pet.id WHERE type_label = 'complete' ORDER BY pe.type ASC;";
+			sql = "SELECT price, label, type_label FROM pizzaperfection.pizza_elements AS pe LEFT JOIN pizza_elements_type AS pet ON pe.type = pet.id WHERE type_label = 'complete' ORDER BY pe.id ASC;";
 		}
 		
 		try {
