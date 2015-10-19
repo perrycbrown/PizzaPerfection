@@ -30,9 +30,7 @@ public class ReviewAddonsServlet extends HttpServlet {
     	Double total = pizzaAddonsService.getTotalPrice(pizzaAddons);
     	request.setAttribute("total",String.format("%1$,.2f", total));
      	 
-    	//Write to a session:
-    	//HttpSession session = request.getSession();
-    	//session.setAttribute("pizza", pizza);
+    	//Update session:
     	if (request.getParameterMap().containsKey("addonsid") && 
 				!((String) request.getParameter("addonsid")).isEmpty()) {
     		PizzaUtility.updatePizzaAddonsInSession(request.getParameter("addonsid"), pizzaAddons, request);

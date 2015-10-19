@@ -152,7 +152,7 @@ public class PizzaUtility {
     	String addonsClass = "";
     	String buildapizzaTitle = "Add a pizza by choosing these options:";
     	String completepizzaTitle = "Add a complete pizza:";
-    	String addonsTitle = "Add one or more to your order:";
+    	String addonsTitle = "Add one or more extras to your order:";
     	
     	PizzaAddonsServiceImpl pizzaAddonsService;
     	pizzaAddonsService = new PizzaAddonsServiceImpl();
@@ -193,7 +193,7 @@ public class PizzaUtility {
 			pizzaClass = "";
 			addonsClass = "active";
 			
-			addonsTitle = "Modify your addons here:";
+			addonsTitle = "Modify your extras here:";
 			completepizzaTitle = "Add a complete pizza:";
 			buildapizzaTitle = "Add a build-a-pizza:";
 		}
