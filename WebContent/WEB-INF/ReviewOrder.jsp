@@ -34,7 +34,7 @@
 				        Pizza #${status.count}: <fmt:formatNumber value="${pizzaval.getTotalPrice()}" type="currency"/>&nbsp;&rarr;&nbsp;
 				        <a class="btn btn-success" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse${status.count}" aria-expanded="false" aria-controls="collapse${status.count}">See details</a>&nbsp&nbsp;
 				        <a href="../options/?pizzaid=${pizza.key}" class="btn btn-warning btn-sm">Change this pizza</a>&nbsp;&nbsp;
-				        <a href="../delete/?pizzaid=${pizza.key}" class="btn btn-warning btn-sm">Delete this pizza</a>
+				        <a href="../delete/?pizzaid=${pizza.key}" class="btn btn-warning btn-sm" onclick="return confirm('Really delete this pizza?');">Delete this pizza</a>
 				        
 				      </h4>
 				    </div>
@@ -151,7 +151,7 @@
 	      <h4 class="panel-title">
 	          Extras: <fmt:formatNumber value="<%= request.getAttribute(\"grandTotalAddons\") %>" type="currency"/>&nbsp;&rarr;&nbsp;
 	          <a class="btn btn-success" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseaddon${status.count}" aria-expanded="false" aria-controls="collapseaddon${status.count}">See details</a>&nbsp&nbsp;
-	          <a href="../options/?addonsid=<%= session.getAttribute("addonsid") %>" class="btn btn-warning btn-sm">Change these extras</a>&nbsp;&nbsp;<a href="../delete/?addonsid=<%= session.getAttribute("addonsid") %>" class="btn btn-warning btn-sm">Delete these extras</a>
+	          <a href="../options/?addonsid=<%= session.getAttribute("addonsid") %>" class="btn btn-warning btn-sm">Change these extras</a>&nbsp;&nbsp;<a href="../delete/?addonsid=<%= session.getAttribute("addonsid") %>" class="btn btn-warning btn-sm" onclick="return confirm('Really delete these extras?');">Delete these extras</a>
 	        </a>
 	      </h4>
 	    </div>
