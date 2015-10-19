@@ -176,18 +176,6 @@ public class PizzaImpl implements Pizza {
 		return (this.completePrice * this.pizzaQuantity);
 	}
 
-	@Override
-	public String toString() {
-		return "PizzaImpl [crustType=" + crustType + ", crustPrice="
-				+ crustPrice + ", sauceType=" + sauceType + ", saucePrice="
-				+ saucePrice + ", cheeseType=" + cheeseType + ", cheesePrice="
-				+ cheesePrice + ", toppingType=" + toppingType
-				+ ", toppingPrice=" + toppingPrice + ", pizzaSize=" + pizzaSize
-				+ ", totalPrice=" + totalPrice
-				+ ", pizzaQuantity=" + pizzaQuantity
-				+ "]";
-	}
-
 	public String getCompleteType() {
 		return this.completeType;
 	}
@@ -202,6 +190,18 @@ public class PizzaImpl implements Pizza {
 
 	public void setCompletePrice(double completePrice) {
 		this.completePrice = completePrice;
+	}
+	
+	@Override
+	public String toString() {
+		return "PizzaImpl [crustType=" + crustType + ", crustPrice="
+				+ crustPrice + ", sauceType=" + sauceType + ", saucePrice="
+				+ saucePrice + ", cheeseType=" + cheeseType + ", cheesePrice="
+				+ cheesePrice + ", toppingType=" + toppingType
+				+ ", toppingPrice=" + toppingPrice + ", pizzaSize=" + pizzaSize
+				+ ", totalPrice=" + totalPrice
+				+ ", pizzaQuantity=" + pizzaQuantity
+				+ "]";
 	}
 
 }
