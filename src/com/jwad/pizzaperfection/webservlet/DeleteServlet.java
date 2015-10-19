@@ -27,7 +27,6 @@ public class DeleteServlet extends HttpServlet {
     	} 
  
     	response.sendRedirect("../revieworder/");
-       	//getServletContext().getRequestDispatcher("com.jwad.pizzaperfection.webservlet.ReviewOrderServlet").forward(request, response);
     	
     }
  
