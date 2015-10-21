@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `pizzaperfection` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `pizzaperfection`;
 -- MySQL dump 10.13  Distrib 5.6.24, for osx10.8 (x86_64)
 --
 -- Host: 127.0.0.1    Database: pizzaperfection
@@ -82,7 +84,7 @@ CREATE TABLE `pizza_elements` (
   PRIMARY KEY (`id`),
   KEY `id_idx` (`type`),
   CONSTRAINT `type` FOREIGN KEY (`type`) REFERENCES `pizza_elements_type` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -91,7 +93,7 @@ CREATE TABLE `pizza_elements` (
 
 LOCK TABLES `pizza_elements` WRITE;
 /*!40000 ALTER TABLE `pizza_elements` DISABLE KEYS */;
-INSERT INTO `pizza_elements` VALUES (1,1,1.00,'regular crust'),(2,1,2.00,'thick crust'),(3,2,1.00,'regular sauce'),(4,2,2.00,'extra sauce'),(5,3,1.00,'regular cheese'),(6,3,2.00,'extra cheese'),(7,4,1.00,'pepperoni'),(8,4,1.00,'sausage'),(9,4,1.00,'mushrooms'),(10,5,5.00,'small pepperoni'),(11,5,7.50,'medium pepperoni'),(12,5,10.00,'large pepperoni'),(13,5,12.50,'x-large pepperoni'),(14,5,5.00,'small sausage'),(15,5,7.50,'medium sausage'),(16,5,10.00,'large sausage'),(17,5,12.50,'x-large sausage');
+INSERT INTO `pizza_elements` VALUES (1,1,1.00,'regular crust'),(2,1,2.00,'thick crust'),(3,2,1.00,'regular sauce'),(4,2,2.00,'extra sauce'),(5,3,1.00,'regular cheese'),(6,3,2.00,'extra cheese'),(7,4,1.00,'pepperoni'),(8,4,1.00,'sausage'),(9,4,1.00,'mushrooms'),(10,5,5.00,'small pepperoni'),(11,5,7.50,'medium pepperoni'),(12,5,10.00,'large pepperoni'),(13,5,12.50,'x-large pepperoni'),(14,5,5.00,'small sausage'),(15,5,7.50,'medium sausage'),(16,5,10.00,'large sausage'),(17,5,12.50,'x-large sausage'),(18,4,1.00,'anchovies'),(19,4,1.00,'ham'),(20,4,1.00,'Canadian bacon');
 /*!40000 ALTER TABLE `pizza_elements` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -153,4 +155,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-10-11 13:36:35
+-- Dump completed on 2015-10-20 21:20:30
