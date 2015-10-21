@@ -73,6 +73,8 @@ public class PizzaServiceImpl implements PizzaService {
 					Integer.parseInt(request.getParameter("quantity")));
 		}
 		
+		System.out.println("Here is pizza: " + pizza);
+		
 		return pizza;
 		
 	}

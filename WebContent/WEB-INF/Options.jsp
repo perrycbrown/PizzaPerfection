@@ -82,7 +82,7 @@
 		<tr>
 		<td class="text-right">Type of ${element.getType()}:</td>
 		<td>
-		<select name="${element.getType()}" class="form-control" id="${element.getType()}" onChange="change_price(this);" ${element.getType() == "topping" ? "multiple size='3'" : "size='1'"}>
+		<select name="${element.getType()}" class="form-control" id="${element.getType()}" onChange="change_price(this);" ${element.getType() == "topping" ? "multiple size='4'" : "size='1'"}>
 		<c:choose>
 			<c:when test="${label == pizza.getCrustType() || label == pizza.getSauceType() || label == pizza.getCheeseType() || pizza.getToppingType().contains(label)}">
 				<option value="${element.getLabel()}" data-price="${element.getPrice()}" selected>${element.getLabel()} @ <fmt:formatNumber value="${element.getPrice()}" type="currency"/></option>
@@ -147,7 +147,7 @@
 </c:forEach>
 
 </select>
-<input type="hidden" name="size_price" value="1.00" id="size_price">
+<!--  <input type="hidden" name="size_price" value="1.00" id="size_price"> -->
 </td>
 </tr>
 
@@ -295,7 +295,7 @@
 </c:forEach>
 
 <tr>
-<td class="text-right">Review these addons:</td>
+<td class="text-right">Review these extras:</td>
 <td class="left" colspan="2">
 <input type="hidden" value="<%= request.getAttribute("addonsid") %>" name="addsonid">
 <input type="submit" value="Review It!" class="btn btn-danger">

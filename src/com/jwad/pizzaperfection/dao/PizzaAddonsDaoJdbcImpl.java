@@ -1,7 +1,6 @@
 package com.jwad.pizzaperfection.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -11,6 +10,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import com.jwad.pizzaperfection.domainmodel.PizzaAddonsImpl;
+import com.jwad.pizzaperfection.dao.ConnectionDao;
 
 public class PizzaAddonsDaoJdbcImpl implements PizzaAddonsDao {
 
@@ -32,8 +32,7 @@ public class PizzaAddonsDaoJdbcImpl implements PizzaAddonsDao {
 		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			String url = "jdbc:mysql://localhost/pizzaperfection";
-			Connection con = DriverManager.getConnection(url, "root", "srumn78z");
+			Connection con = ConnectionDao.get();
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()){
@@ -89,8 +88,7 @@ public class PizzaAddonsDaoJdbcImpl implements PizzaAddonsDao {
 		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			String url = "jdbc:mysql://localhost/pizzaperfection";
-			Connection con = DriverManager.getConnection(url, "root", "srumn78z");
+			Connection con = ConnectionDao.get();
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()){
